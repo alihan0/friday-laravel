@@ -23,4 +23,5 @@ Route::controller(AuthController::Class)->prefix('auth')->group(function(){
     Route::get('/login', 'showLogin')->name('login');
     Route::get('/logout', 'logout');
     Route::post('/login', 'login');
+    Route::post('/change-password', 'change_password');
 });

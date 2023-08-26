@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -41,5 +43,19 @@ class AuthController extends Controller
     
         return redirect('/');
 
+    }
+
+    public function change_password(Request $request){
+        if(Auth::check()){
+            if($request->password){
+                $user = User::find(Auth::user()->id);
+                if($user){
+                    $user->password = Hash::make($request->password);
+                    if($user->save()){
+                        return true;
+                    }
+                }
+            }
+        }
     }
 }

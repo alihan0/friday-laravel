@@ -60,6 +60,7 @@
 		</div>
 	</div>
 
+	@include('layout.modal')
 	<!-- core:js -->
 	<script src="/static/assets/vendors/core/core.js"></script>
 	<!-- endinject -->
@@ -77,6 +78,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script src="/static/assets/js/toastr-init.js"></script>
-  @yield('script')
+  	@yield('script')
+	<script>
+		function changePassword(){
+			var password = $("#password").val();
+			axios.post('/auth/change-password', {password:password}).then(() =>{
+				window.location.assign('/auth/logout');
+			})
+		}
+	</script>
 </body>
 </html>

@@ -113,6 +113,12 @@
                         </div>
                     </div>
                     <ul class="list-unstyled p-1">
+                        <li class="dropdown-item py-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                            <a href="javascript:;" class="text-body ms-0" >
+                            <i class="me-2 icon-md" data-feather="key"></i>
+                            <span>Şifre Değiştir</span>
+                            </a>
+                        </li>
                         <li class="dropdown-item py-2">
                             <a href="/auth/logout" class="text-body ms-0">
                             <i class="me-2 icon-md" data-feather="log-out"></i>

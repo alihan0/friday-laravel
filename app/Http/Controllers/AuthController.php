@@ -31,4 +31,15 @@ class AuthController extends Controller
 
         return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
     }
+
+    public function logout(Request $request){
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect('/');
+
+    }
 }

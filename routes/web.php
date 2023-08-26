@@ -21,6 +21,6 @@ Route::controller(MainController::class)->middleware('auth')->group(function(){
 
 Route::controller(AuthController::Class)->prefix('auth')->group(function(){
     Route::get('/login', 'showLogin')->name('login');
-
+    Route::get('/logout', 'logout');
     Route::post('/login', 'login');
 });

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,8 @@ Route::controller(AuthController::Class)->prefix('auth')->group(function(){
     Route::get('/logout', 'logout');
     Route::post('/login', 'login');
     Route::post('/change-password', 'change_password');
+});
+
+Route::controller(ProjectController::class)->prefix('project')->middleware('auth')->group(function(){
+    Route::get('/new', 'showNew');
 });

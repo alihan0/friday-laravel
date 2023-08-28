@@ -58,4 +58,8 @@ class ProjectController extends Controller
 
         return response(["type" => $this->type, "message" => $this->message, "status" => $this->status, "id" => $id]);
     }
+
+    public function detail($id){
+        return view('project.detail', ["project" => Project::find($id)]);
+    }
 }

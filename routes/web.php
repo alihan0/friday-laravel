@@ -29,5 +29,6 @@ Route::controller(AuthController::Class)->prefix('auth')->group(function(){
 
 Route::controller(ProjectController::class)->prefix('project')->middleware('auth')->group(function(){
     Route::get('/new', 'showNew');
+    Route::get('/detail/{id}', 'detail');
     Route::post('/save', 'save');
 });

@@ -31,24 +31,34 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label for="offer" class="form-label">Müşteri</label>
-                                    <select class="form-control" id="offer">
+                                    <label for="customer" class="form-label">Müşteri</label>
+                                    <select class="form-control" id="customer">
                                         <option value="0">Seçin...</option>
+                                        @if ($customers->count() > 0)
+                                            @foreach ($customers as $customer)
+                                                <option value="{{ $customer->id }}">{{$customer->name}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                   </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label for="offer" class="form-label">Teklif Dokümanı</label>
+                                    <label for="offer" class="form-label">Teklif</label>
                                     <select class="form-control" id="offer">
                                         <option value="0">Seçin...</option>
+                                        @if ($offers)
+                                            @foreach ($offers as $offer)
+                                                <option value="{{ $offer->id }}">{{$offer->title}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                   </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="detail" class="form-label">GitHub Repo</label>
-                            <input type="text" class="form-control" id="title" placeholder="Projenin görünen adını girin.">
+                            <label for="github" class="form-label">GitHub Repo</label>
+                            <input type="text" class="form-control" id="github" placeholder="Projenin görünen adını girin.">
                           </div>
                       </form>
                 </div>
@@ -71,29 +81,29 @@
 
                         <div class="mb-3">
                             <label for="start_date" class="form-label">Başlama Tarihi</label>
-                            <div class="input-group flatpickr" id="flatpickr-date">
+                            <div class="input-group flatpickr" id="start_date">
                                 <input type="text" class="form-control" placeholder="Select date" data-input>
                                 <span class="input-group-text input-group-addon" data-toggle><i data-feather="calendar"></i></span>
                             </div>
                           </div>
 
                           <div class="mb-3">
-                            <label for="start_date" class="form-label">Teslim Tarihi</label>
-                            <div class="input-group flatpickr" id="flatpickr-date">
+                            <label for="dead_line" class="form-label">Teslim Tarihi</label>
+                            <div class="input-group flatpickr" id="dead_line">
                                 <input type="text" class="form-control" placeholder="Select date" data-input>
                                 <span class="input-group-text input-group-addon" data-toggle><i data-feather="calendar"></i></span>
                             </div>
                           </div>
 
                           <div class="mb-3">
-                            <label class="form-label">Teknoloji Yığını</label>
-                            <select class="js-example-basic-multiple form-select" multiple="multiple" data-width="100%">
-                                <option value="TX">Texas</option>
-                                <option value="WY">Wyoming</option>
-                                <option value="NY">New York</option>
-                                <option value="FL">Florida</option>
-                                <option value="KN">Kansas</option>
-                                <option value="HW">Hawaii</option>
+                            <label class="form-label" for="techstack">Teknoloji Yığını</label>
+                            <select class="js-example-basic-multiple form-select" id="techstack" multiple="multiple" data-width="100%">
+                                @if ($techs->count() > 0)
+                                    @foreach ($techs as $tech)
+                                        <option value="{{ $tech->id }}">{{$tech->title}}</option>
+                                    @endforeach
+                                    
+                                @endif
                             </select>
                         </div>
                         

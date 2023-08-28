@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('customer');
             $table->string('title');
-            $table->string('detail');
+            $table->text('detail');
+            $table->integer('status');
             $table->timestamps();
         });
     }

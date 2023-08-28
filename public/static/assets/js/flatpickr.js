@@ -5,8 +5,8 @@ $(function() {
   'use strict';
 
   // date picker 
-  if($('#flatpickr-date').length) {
-    flatpickr("#flatpickr-date", {
+  if($('.flatpickr-date').length) {
+    flatpickr(".flatpickr-date", {
       wrap: true,
       dateFormat: "Y-m-d",
     });
@@ -14,8 +14,8 @@ $(function() {
 
 
   // time picker
-  if($('#flatpickr-time').length) {
-    flatpickr("#flatpickr-time", {
+  if($('.flatpickr-time').length) {
+    flatpickr(".flatpickr-time", {
       wrap: true,
       enableTime: true,
       noCalendar: true,

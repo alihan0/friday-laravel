@@ -17,8 +17,13 @@ class Project extends Model
         "title",
         "detail",
         "start_at",
-        "passing_at",
+        "passing_time",
         "dead_line",
-        "status"
+        "status",
+        "offer",
+        "github",
+        "tech_stack",
+        "price",
+        "required_time",
     ];
 }

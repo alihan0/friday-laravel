@@ -60,14 +60,14 @@
                             <label for="github" class="form-label">GitHub Repo</label>
                             <input type="text" class="form-control" id="github" name="github" placeholder="Projenin görünen adını girin.">
                           </div>
-                      </form>
+                   
                 </div>
             </div>
         </div>
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                   
                         <div class="mb-3">
                           <label for="price" class="form-label">Fiyat</label>
                           <div class="input-group">
@@ -81,16 +81,16 @@
 
                         <div class="mb-3">
                             <label for="start_date" class="form-label">Başlama Tarihi</label>
-                            <div class="input-group flatpickr" id="start_date" name="start_date">
-                                <input type="text" class="form-control" placeholder="Select date" data-input>
+                            <div class="input-group flatpickr flatpickr-date" id="start_date" >
+                                <input type="text" class="form-control" placeholder="İşe başlama tarihi" name="start_date" data-input>
                                 <span class="input-group-text input-group-addon" data-toggle><i data-feather="calendar"></i></span>
                             </div>
                           </div>
 
                           <div class="mb-3">
                             <label for="dead_line" class="form-label">Teslim Tarihi</label>
-                            <div class="input-group flatpickr" id="dead_line" name="dead_line">
-                                <input type="text" class="form-control" placeholder="Select date" data-input>
+                            <div class="input-group flatpickr flatpickr-date" id="dead_line" >
+                                <input type="text" class="form-control" placeholder="Teslim edileceği tarih" name="dead_line" data-input>
                                 <span class="input-group-text input-group-addon" data-toggle><i data-feather="calendar"></i></span>
                             </div>
                           </div>
@@ -108,7 +108,7 @@
                         </div>
                         
                         
-                        <button type="submit" class="btn btn-primary float-end">Submit</button>
+                        <a href="javascript:;" class="btn btn-primary float-end" onclick="addProject()">Oluştur</a>
                       </form>
                 </div>
             </div>
@@ -123,6 +123,18 @@
 <script src="/static/assets/js/flatpickr.js"></script>
     <script>
 
+        function addProject(){
+            var data = $('#projectForm').serialize();
+
+            axios.post('/project/save', data).then((res)=>{
+                toastr[res.data.type](res.data.message);
+                if(res.data.status){
+                    setInterval(() => {
+                        window.location.assign('/project/detail/'+res.data.id);
+                    },1000)
+                }
+            })
+        }
         
     </script>
 @endsection

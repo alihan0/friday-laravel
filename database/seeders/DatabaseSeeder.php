@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Customer;
+use App\Models\Offer;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +39,13 @@ class DatabaseSeeder extends Seeder
             "address" => "Test Address",
             "country" => "Test Country",
             "city" => "Test City",
+            "status" => 1
+        ]);
+
+        Offer::create([
+            "customer" => 1,
+            "title" => "Test Offer",
+            "detail" => "Test Detail",
             "status" => 1
         ]);
     }

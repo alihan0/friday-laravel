@@ -17,9 +17,13 @@ return new class extends Migration
             $table->integer('customer');
             $table->string('title');
             $table->text('detail');
+            $table->integer('offer');
+            $table->decimal('price', 9,2);
+            $table->string('tech_stack');
             $table->string('start_at');
-            $table->string('passing_time');
             $table->string('dead_line');
+            $table->string('passing_time');
+            $table->string('required_time');
             $table->integer('status');
             $table->timestamps();
         });

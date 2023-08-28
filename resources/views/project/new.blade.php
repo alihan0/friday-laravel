@@ -10,6 +10,11 @@
 @endsection
 
 @section('content')
+    <div class="row mb-4">
+        <div class="col">
+            <h4 class="card-title border-bottom pb-3">Yeni Proje</h4>
+        </div>
+    </div>
     <div class="row">
         <div class="col-6">
             <div class="card">
@@ -21,7 +26,7 @@
                         </div>
                         <div class="mb-3">
                           <label for="detail" class="form-label">Açıklama</label>
-                          <textarea class="form-control" id="detail" rows="5" placeholder="Projenin detaylarından bahsedin. (Zorunlu Değil)"></textarea>
+                          <textarea class="form-control" id="detail" rows="3" placeholder="Projenin detaylarından bahsedin. (Zorunlu Değil)"></textarea>
                         </div>
                         <div class="row">
                             <div class="col-6">
@@ -41,7 +46,10 @@
                                   </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="mb-3">
+                            <label for="detail" class="form-label">GitHub Repo</label>
+                            <input type="text" class="form-control" id="title" placeholder="Projenin görünen adını girin.">
+                          </div>
                       </form>
                 </div>
             </div>
@@ -90,7 +98,7 @@
                         </div>
                         
                         
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary float-end">Submit</button>
                       </form>
                 </div>
             </div>

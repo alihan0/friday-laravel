@@ -62,4 +62,8 @@ class ProjectController extends Controller
     public function detail($id){
         return view('project.detail', ["project" => Project::find($id)]);
     }
+
+    public function all(){
+        return view('project.all', ["projects" => Project::all()]);
+    }
 }

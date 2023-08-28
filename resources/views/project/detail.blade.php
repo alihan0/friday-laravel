@@ -80,18 +80,6 @@
 <script src="/static/assets/js/flatpickr.js"></script>
     <script>
 
-        function addProject(){
-            var data = $('#projectForm').serialize();
-
-            axios.post('/project/save', data).then((res)=>{
-                toastr[res.data.type](res.data.message);
-                if(res.data.status){
-                    setInterval(() => {
-                        window.location.assign('/project/detail/'+res.data.id);
-                    },1000)
-                }
-            })
-        }
-        
+       
     </script>
 @endsection

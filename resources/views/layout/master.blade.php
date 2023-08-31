@@ -32,6 +32,45 @@
   <link rel="shortcut icon" href="/static/assets/images/favicon.png" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"/>
+  <style>
+    .clock {
+        display: inline-block;
+        background-color: #f7f7f7;
+        border: 10px solid #222;
+        border-radius: 50%;
+        width: 300px;
+        height: 300px;
+        position: relative;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .clock-inner {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        background-color: #f7f7f7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .clock-time {
+        font-size: 2em;
+        color: #333;
+    }
+    
+    .btn-outline-secondary {
+        border-color: #ccc;
+        color: #333;
+    }
+    
+    .btn-outline-secondary:hover {
+        background-color: #ccc;
+    }
+</style>
 
   @yield('style')
 </head>
@@ -86,6 +125,92 @@
 				window.location.assign('/auth/logout');
 			})
 		}
+
+		$(document).ready(function () {
+            $("#projectSelect").on("change", function () {
+                const id = $(this).val();
+
+                const modalContent = `
+                    <div class="modal fade" id="timeModal" tabindex="-1"  data-bs-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="projectTitle">Çalışma Zamanı</h5>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <div class="clock">
+                                        <div class="clock-inner">
+                                            <div class="clock-time">
+                                                <div id="clockStartedAt" class="mb-2 fs-5"></div>
+                                                <span id="timeDifference" class="display-3">00:00:00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="startTimeInSeconds">
+                                    <input type="hidden" id="timeDifferenceInSeconds">
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-outline-secondary mr-3">
+                                        <i data-feather="pause"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        <i data-feather="square"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                $("body").append(modalContent);
+                feather.replace();
+
+                const getCurrentTime = () => {
+                    const now = new Date();
+                    return now.toLocaleTimeString();
+                };
+
+                const formatTime = (hours, minutes, seconds) => {
+                    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                };
+
+				const projectName = $("#projectSelect option:selected").text();
+   				$("#projectTitle").text(`${projectName} üzerinde çalışıyorsun`);
+
+                let startTimeInSeconds = Math.floor(Date.now() / 1000);
+                const updateClockStartedAt = () => {
+                    const startDate = new Date(startTimeInSeconds * 1000);
+                    const formattedStartDate = startDate.toLocaleTimeString();
+                    $("#clockStartedAt").text(`Started at: ${formattedStartDate}`);
+                };
+
+                updateClockStartedAt();
+
+                const updateTimeDifference = () => {
+                    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+                    const timeDifferenceInSeconds = currentTimeInSeconds - startTimeInSeconds;
+
+                    const hours = Math.floor(timeDifferenceInSeconds / 3600);
+                    const minutes = Math.floor((timeDifferenceInSeconds % 3600) / 60);
+                    const seconds = timeDifferenceInSeconds % 60;
+
+                    $("#timeDifference").text(formatTime(hours, minutes, seconds));
+                };
+
+                const updateInterval = setInterval(() => {
+                    updateTimeDifference();
+                }, 1000);
+
+                $("#timeModal").modal("show");
+
+                $("#timeModal").on("hidden.bs.modal", function () {
+                    clearInterval(updateInterval);
+                    $(this).remove();
+                });
+            });
+        });
+
+
 	</script>
 </body>
 </html>

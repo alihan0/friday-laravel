@@ -3,7 +3,16 @@
         <i data-feather="menu"></i>
     </a>
     <div class="navbar-content">
-        
+        <form class="search-form ">
+            <div class="input-group w-25" >
+                    <select name="" class="form-control border"  id="projectSelect">
+                        <option value="">Proje Seçin</option>
+                        @foreach ($projects as $project)
+                            <option value="{{$project->id}}">{{$project->title}}</option>
+                        @endforeach
+                    </select>
+            </div>
+        </form>
         <ul class="navbar-nav">
             <!-- Language
             <li class="nav-item dropdown">
@@ -19,6 +28,11 @@
                 </div>
             </li>
         -->
+        <li class="">
+            <select name="" class="form-control" id="">
+                <option value="0">Proje Seçin</option>
+            </select>
+        </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="grid"></i>

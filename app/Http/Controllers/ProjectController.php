@@ -66,4 +66,21 @@ class ProjectController extends Controller
     public function all(){
         return view('project.all', ["projects" => Project::all()]);
     }
+
+    public function proccess_save(Request $request){
+        $time = $request->passedTime;
+        $project = Project::find($request->project);
+
+        $passing_time = $project->passing_time;
+        $new_time = $passing_time + $time;
+
+        $project->passing_time = $new_time;
+        
+        if($project->save()){
+            return response(["status" => true]);
+        }
+
+
+
+    }
 }

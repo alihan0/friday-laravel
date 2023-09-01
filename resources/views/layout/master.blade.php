@@ -127,88 +127,114 @@
 		}
 
 		$(document).ready(function () {
-            $("#projectSelect").on("change", function () {
-                const id = $(this).val();
+			$("#projectSelect").on("change", function () {
+				const id = $(this).val();
 
-                const modalContent = `
-                    <div class="modal fade" id="timeModal" tabindex="-1"  data-bs-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="projectTitle">Çalışma Zamanı</h5>
-                                </div>
-                                <div class="modal-body text-center">
-                                    <div class="clock">
-                                        <div class="clock-inner">
-                                            <div class="clock-time">
-                                                <div id="clockStartedAt" class="mb-2 fs-5"></div>
-                                                <span id="timeDifference" class="display-3">00:00:00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" id="startTimeInSeconds">
-                                    <input type="hidden" id="timeDifferenceInSeconds">
-                                </div>
-                                <div class="modal-footer justify-content-center">
-                                    <button type="button" class="btn btn-outline-secondary mr-3">
-                                        <i data-feather="pause"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i data-feather="square"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
+				const modalContent = `
+					<div class="modal fade" id="timeModal" tabindex="-1"  data-bs-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="projectTitle">Çalışma Zamanı</h5>
+								</div>
+								<div class="modal-body text-center">
+									<div class="clock">
+										<div class="clock-inner">
+											<div class="clock-time">
+												<div id="clockStartedAt" class="mb-2 fs-5"></div>
+												<span id="timeDifference" class="display-3">00:00:00</span>
+											</div>
+										</div>
+									</div>
+									<input type="hidden" id="timeDifferenceInSeconds">
+								</div>
+								<div class="modal-footer justify-content-end" data-bs-toggle="tooltip" title="Durdur">
+									<button type="button" class="btn btn-danger" id="stop">
+										<i data-feather="square"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				`;
 
-                $("body").append(modalContent);
-                feather.replace();
+				$("body").append(modalContent);
+				feather.replace();
 
-                const getCurrentTime = () => {
-                    const now = new Date();
-                    return now.toLocaleTimeString();
-                };
+				const getCurrentTime = () => {
+					const now = new Date();
+					return now.toLocaleTimeString();
+				};
 
-                const formatTime = (hours, minutes, seconds) => {
-                    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                };
+				const formatTime = (hours, minutes, seconds) => {
+					return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+				};
 
 				const projectName = $("#projectSelect option:selected").text();
-   				$("#projectTitle").text(`${projectName} üzerinde çalışıyorsun`);
+				$("#projectTitle").text(`${projectName} üzerinde çalışıyorsun`);
 
-                let startTimeInSeconds = Math.floor(Date.now() / 1000);
-                const updateClockStartedAt = () => {
-                    const startDate = new Date(startTimeInSeconds * 1000);
-                    const formattedStartDate = startDate.toLocaleTimeString();
-                    $("#clockStartedAt").text(`Started at: ${formattedStartDate}`);
-                };
+				let startTimeInSeconds = Math.floor(Date.now() / 1000);
+				const updateClockStartedAt = () => {
+					const startDate = new Date(startTimeInSeconds * 1000);
+					const formattedStartDate = startDate.toLocaleTimeString();
+					$("#clockStartedAt").text(`Started at: ${formattedStartDate}`);
+				};
 
-                updateClockStartedAt();
+				updateClockStartedAt();
+				let isPaused = false;
+				let updateInterval;
 
-                const updateTimeDifference = () => {
-                    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
-                    const timeDifferenceInSeconds = currentTimeInSeconds - startTimeInSeconds;
+			
 
-                    const hours = Math.floor(timeDifferenceInSeconds / 3600);
-                    const minutes = Math.floor((timeDifferenceInSeconds % 3600) / 60);
-                    const seconds = timeDifferenceInSeconds % 60;
+				const updateTimeDifference = () => {
+					if (!isPaused) {
+						const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+						const timeDifferenceInSeconds = currentTimeInSeconds - startTimeInSeconds;
 
-                    $("#timeDifference").text(formatTime(hours, minutes, seconds));
-                };
+						const hours = Math.floor(timeDifferenceInSeconds / 3600);
+						const minutes = Math.floor((timeDifferenceInSeconds % 3600) / 60);
+						const seconds = timeDifferenceInSeconds % 60;
 
-                const updateInterval = setInterval(() => {
-                    updateTimeDifference();
-                }, 1000);
+						$("#timeDifference").text(formatTime(hours, minutes, seconds));
+						$("#timeDifferenceInSeconds").val(timeDifferenceInSeconds)
+					}
+				};
 
-                $("#timeModal").modal("show");
+				updateInterval = setInterval(() => {
+					updateTimeDifference();
+				}, 1000);
 
-                $("#timeModal").on("hidden.bs.modal", function () {
-                    clearInterval(updateInterval);
-                    $(this).remove();
-                });
-            });
-        });
+				$("#timeModal").modal("show");
+
+				$("#timeModal").on("hidden.bs.modal", function () {
+					clearInterval(updateInterval);
+					$(this).remove();
+				});
+
+				$("#stop").on("click", function () {
+				const passedTime = $("#timeDifferenceInSeconds").val();
+				const project = $("#projectSelect").val();
+				// Axios ile POST isteği yapma
+				axios.post('/project/proccess/save', { passedTime: passedTime, project:project })
+					.then(function (response) {
+					
+						if(response.data.status){
+							toastr["success"]("Çalışma süresi kaydedildi.");
+							$("#timeModal").modal("hide");
+							setInterval(() => {
+								window.location.reload();
+							}, 1000);
+						}
+						
+					})
+					.catch(function (error) {
+						toastr["error"]("Çalışma Süresi Kaydedilmedi!");
+					});
+			});
+
+			});
+		});
+
 
 
 	</script>

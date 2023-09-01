@@ -37,18 +37,18 @@
               </div>
             </div>
             
-            <div id="ProjectChart" data-pass="{{$project->passing_time}}" data-require="{{$project->required_time}}"></div>
+            <div class="ProjectChart" data-pass="{{$project->passing_time}}" data-require="{{$project->required_time}}"></div>
             <div class="row mb-3">
               <div class="col-6 d-flex justify-content-end">
                 <div>
-                  <label class="d-flex align-items-center justify-content-end tx-10 text-uppercase fw-bolder">Total storage <span class="p-1 ms-1 rounded-circle bg-secondary"></span></label>
-                  <h5 class="fw-bolder mb-0 text-end">8TB</h5>
+                  <label class="d-flex align-items-center justify-content-end tx-10 text-uppercase fw-bolder">Geçen Süre <span class="p-1 ms-1 rounded-circle bg-primary"></span></label>
+                  <h5 class="fw-bolder mb-0 text-end">{{formatSeconds($project->passing_time)}}</h5>
                 </div>
               </div>
               <div class="col-6">
                 <div>
-                  <label class="d-flex align-items-center tx-10 text-uppercase fw-bolder"><span class="p-1 me-1 rounded-circle bg-primary"></span> Used storage</label>
-                  <h5 class="fw-bolder mb-0">~5TB</h5>
+                  <label class="d-flex align-items-center tx-10 text-uppercase fw-bolder"><span class="p-1 me-1 rounded-circle bg-secondary"></span> Kalan Zaman</label>
+                  <h5 class="fw-bolder mb-0">{{formatSeconds($project->required_time - $project->passing_time)}}</h5>
                 </div>
               </div>
             </div>
@@ -56,6 +56,8 @@
           </div>
         </div>
       </div>
+      
+      
     @endforeach
     </div> 
 @endsection
@@ -68,54 +70,39 @@
 <script src="/static/assets/vendors/apexcharts/apexcharts.min.js"></script>
 <script src="/static/assets/js/dashboard-light.js"></script>
 
-    <script>
-        var colors = {
-            primary        : "#6571ff",
-            secondary      : "#7987a1",
-            success        : "#05a34a",
-            info           : "#66d1d1",
-            warning        : "#fbbc06",
-            danger         : "#ff3366",
-            light          : "#e9ecef",
-            dark           : "#060c17",
-            muted          : "#7987a1",
-            gridBorder     : "rgba(77, 138, 240, .15)",
-            bodyColor      : "#000",
-            cardBg         : "#fff"
-        }
-        // Saniyeleri yüzdeye dönüştürün
-        var passingtime = $("#ProjectChart").attr('data-pass'); // Örnek: 430 saniye
-        var required_time = $("#ProjectChart").attr('data-require'); // Örnek: 950400 saniye
+<script>
+    // Tüm projelerin kartlarını dönün
+    $(".ProjectChart").each(function(index, element) {
+        var passingtime = $(element).attr('data-pass'); 
+        var required_time = $(element).attr('data-require'); 
 
         var progressPercentage = (passingtime / required_time) * 100;
         var remainingPercentage = 100 - progressPercentage;
         var formattedProgress = (progressPercentage).toFixed(2);
 
-        var progressColor = "#7f1d1d"; // Varsayılan renk
+        var progressColor = "#ddd"; 
 
-        if (progressPercentage >= 10 && progressPercentage < 20) {
-            progressColor = "#b91c1c"; // %10'dan büyük ve %20'den küçükse
+        if (progressPercentage >= 0 && progressPercentage < 20) {
+            progressColor = "#b91c1c"; 
         } else if (progressPercentage >= 20 && progressPercentage < 40) {
-            progressColor = "#2563eb"; // %20'den büyük ve %40'dan küçükse
+            progressColor = "#2563eb"; 
         } else if (progressPercentage >= 40 && progressPercentage < 60) {
-            progressColor = "#1e40af"; // %40'dan büyük ve %60'dan küçükse
+            progressColor = "#1e40af"; 
         } else if (progressPercentage >= 60 && progressPercentage < 80) {
-            progressColor = "#a3e635"; // %60'dan büyük ve %80'den küçükse
+            progressColor = "#a3e635"; 
         } else if (progressPercentage >= 80 && progressPercentage <= 99) {
-            progressColor = "#22c55e"; // %80'den büyük ve %100'e eşitse
-        }else if (progressPercentage >= 100) {
-            progressColor = "#15803d"; // %80'den büyük ve %100'e eşitse
+            progressColor = "#22c55e"; 
+        } else if (progressPercentage >= 99) {
+            progressColor = "#15803d"; 
         }
 
-
-        // options nesnesini oluştururken yüzde değerlerini kullanın
         var options = {
             chart: {
                 height: 260,
                 type: "radialBar"
             },
             series: [formattedProgress],
-            colors: [progressColor], // İlerleme çubuğunun rengi
+            colors: [progressColor],
             plotOptions: {
                 radialBar: {
                     hollow: {
@@ -124,7 +111,7 @@
                     },
                     track: {
                         show: true,
-                        background: "#e9ecef", // Kalan kısmın rengi
+                        background: "#e9ecef",
                         strokeWidth: '100%',
                         opacity: 1,
                         margin: 5,
@@ -154,10 +141,12 @@
             labels: ["İlerleme"]
         };
 
-        var chart = new ApexCharts(document.querySelector("#ProjectChart"), options);
+        // Her bir kartın içindeki grafik öğesine grafik ekleyin
+        var chart = new ApexCharts(element, options);
         chart.render();
+    });
+</script>
 
-    </script>
 
 @endsection
 

@@ -26,13 +26,6 @@ class AppServiceProvider extends ServiceProvider
         if($projects){
             View::share("projects", $projects);
         }
-        $seconds = $this->formatSeconds(60); // Örneğin, 60 saniye için fonksiyonu çağırabilirsiniz.
-
         
-    }
-
-    public function formatSeconds($seconds)
-    {
-        return $seconds;
     }
 }

@@ -23,9 +23,4 @@ if (!function_exists('formatSeconds')) {
     
         return $result;
     }
-    
-    // Örnek kullanım
-    echo formatSeconds(372805); // Örnek saniye değeri
-    
-    
 }

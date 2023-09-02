@@ -28,11 +28,7 @@
                 </div>
             </li>
         -->
-        <li class="">
-            <select name="" class="form-control" id="">
-                <option value="0">Proje Seçin</option>
-            </select>
-        </li>
+        
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="grid"></i>

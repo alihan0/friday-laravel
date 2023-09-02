@@ -28,9 +28,11 @@
                   <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                  <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">Detay</span></a>
+                  <a class="dropdown-item d-flex align-items-center" href="/project/detail/{{$project->id}}"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">Detay</span></a>
                   <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Düzenle</span></a>
-                  <a class="dropdown-item d-flex align-items-center" href="javascript:;" onclick="deleteProject({{$project->id}})"><i data-feather="trash" class="icon-sm me-2"></i> <span class="">Sil</span></a>
+                  <a class="dropdown-item d-flex align-items-center border-bottom mb-2 pb-2" href="javascript:;" onclick="addTime({{ $project->id }})"><i data-feather="plus" class="icon-sm me-2"></i> <span class="">Çalışma Ekle</span></a>
+                  
+                  <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:;" onclick="deleteProject({{$project->id}})"><i data-feather="trash" class="icon-sm me-2 text-danger"></i> <span class="">Projeyi Sil</span></a>
                 </div>
               </div>
             </div>
@@ -168,6 +170,46 @@
       })
 
     }
+
+    function addTime(id) {
+        // Modalı oluşturun
+        var modal = document.createElement('div');
+        modal.className = 'modal fade';
+        modal.id = 'dynamicModal'; // Modalın ID'sini istediğiniz gibi ayarlayın
+
+        // Modal içeriği
+        modal.innerHTML = `
+            <div class="modal-dialog" data-bs-backdrop="static">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Manuel Çalışma Süresi Ekle</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-between mb-3">
+                          <a class="btn btn-success">30 DK</a>
+                          <a class="btn btn-success">1 Saat</a>
+                          <a class="btn btn-success">3 Saat</a>
+                          <a class="btn btn-success">5 Saat</a>
+                          <a class="btn btn-success">10 Saat</a>
+                          <a class="btn btn-success">1 Gün</a>  
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                        <button type="button" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Modalı body içine ekleyin
+        document.body.appendChild(modal);
+
+        // Modalı başlatın
+        var dynamicModal = new bootstrap.Modal(modal, { backdrop: 'static', keyboard: false });
+        dynamicModal.show();
+    }
+
 </script>
 
 

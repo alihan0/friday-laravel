@@ -42,13 +42,13 @@
               <div class="col-6 d-flex justify-content-end">
                 <div>
                   <label class="d-flex align-items-center justify-content-end tx-10 text-uppercase fw-bolder">Geçen Süre <span class="p-1 ms-1 rounded-circle bg-primary"></span></label>
-                  <h5 class="fw-bolder mb-0 text-end">{{formatSeconds($project->passing_time)}}</h5>
+                  <h5 class="fw-bolder mb-0 text-end">{{$project->passing_time > 0 ? formatSeconds($project->passing_time) : "-"}}</h5>
                 </div>
               </div>
               <div class="col-6">
                 <div>
                   <label class="d-flex align-items-center tx-10 text-uppercase fw-bolder"><span class="p-1 me-1 rounded-circle bg-secondary"></span> Kalan Zaman</label>
-                  <h5 class="fw-bolder mb-0">{{formatSeconds($project->required_time - $project->passing_time)}}</h5>
+                  <h5 class="fw-bolder mb-0">{{ formatSeconds($project->required_time - $project->passing_time)}}</h5>
                 </div>
               </div>
             </div>

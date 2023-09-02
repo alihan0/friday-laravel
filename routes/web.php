@@ -33,4 +33,5 @@ Route::controller(ProjectController::class)->prefix('project')->middleware('auth
     Route::get('/detail/{id}', 'detail');
     Route::post('/save', 'save');
     Route::post('/proccess/save', 'proccess_save');
+    Route::post('delete', 'delete');
 });

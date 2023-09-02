@@ -32,6 +32,7 @@
   <link rel="shortcut icon" href="/static/assets/images/favicon.png" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
   <style>
     .clock {
         display: inline-block;
@@ -117,6 +118,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script src="/static/assets/js/toastr-init.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
   	@yield('script')
 	<script>
 		function changePassword(){

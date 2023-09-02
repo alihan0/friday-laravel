@@ -28,11 +28,9 @@
                   <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-                  <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">View</span></a>
-                  <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
-                  <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="trash" class="icon-sm me-2"></i> <span class="">Delete</span></a>
-                  <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="printer" class="icon-sm me-2"></i> <span class="">Print</span></a>
-                  <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="download" class="icon-sm me-2"></i> <span class="">Download</span></a>
+                  <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">Detay</span></a>
+                  <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Düzenle</span></a>
+                  <a class="dropdown-item d-flex align-items-center" href="javascript:;" onclick="deleteProject({{$project->id}})"><i data-feather="trash" class="icon-sm me-2"></i> <span class="">Sil</span></a>
                 </div>
               </div>
             </div>
@@ -145,6 +143,31 @@
         var chart = new ApexCharts(element, options);
         chart.render();
     });
+
+
+    function deleteProject(id){
+      
+
+      swal.fire({
+        title: "Silmek istediginize emin misiniz?",
+        text : "Projeyi sildiğiniz, projenizle birlikte tüm verileri silinecek. Bu işlem geri alınamaz.",
+        confirmButtonText: "Evet, Sil",
+        showCancelButton: true,
+        cancelButtonText: "Vazgeç"
+      }).then((confirm) => {
+        if(confirm.isConfirmed){
+          axios.post('/project/delete', {id: id}).then((response) => {
+            swal.fire({
+              icon: response.data.icon,
+              title: response.data.message,
+            }).then(()=>{
+              window.location.reload();
+            })
+          })
+        }
+      })
+
+    }
 </script>
 
 

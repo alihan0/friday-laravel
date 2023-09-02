@@ -17,6 +17,8 @@ class ProjectController extends Controller
     protected $message = null;
     protected $status = false;
 
+    protected $icon = null;
+
     public function showNew(){
         return view('project.new', ["offers" => Offer::all(), 'customers' => Customer::all(), "techs" => Tech::all()]);
     }
@@ -82,5 +84,25 @@ class ProjectController extends Controller
 
 
 
+    }
+
+    public function delete(Request $request){
+        if($request->id){
+            $p = Project::find($request->id);
+            if($p){
+                if($p->delete()){
+                    $this->icon = "success";
+                    $this->message = "Proje verileri başarıyla silindi.";
+                    $this->status = true;
+                }else{
+                    $this->icon = "error";
+                    $this->message = "Proje verileri silinemedi.";
+                }
+            }else{
+                $this->icon = "error";
+                $this->message = "Proje verisi bulunamadı.";
+            }
+        }
+        return response(["status" => $this->status, "message" => $this->message, "icon" => $this->icon]);
     }
 }

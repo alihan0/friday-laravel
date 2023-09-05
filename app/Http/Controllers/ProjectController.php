@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Offer;
+use App\Models\Payment;
 use App\Models\Project;
 use App\Models\Tech;
 use Illuminate\Http\Request;
@@ -62,7 +63,7 @@ class ProjectController extends Controller
     }
 
     public function detail($id){
-        return view('project.detail', ["project" => Project::find($id)]);
+        return view('project.detail', ["project" => Project::find($id), 'payments' => Payment::where('project', $id)->orderBy('id', 'desc')->get()]);
     }
 
     public function all(){

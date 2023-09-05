@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProjectController;
@@ -35,4 +36,8 @@ Route::controller(ProjectController::class)->prefix('project')->middleware('auth
     Route::post('/proccess/save', 'proccess_save');
     Route::post('/delete', 'delete');
     Route::post('/add-work-time', 'add_work_time');
+});
+
+Route::controller(AccountingController::class)->prefix('accounting')->middleware('auth')->group(function(){
+    Route::post('/add-payment', 'add_payment');
 });

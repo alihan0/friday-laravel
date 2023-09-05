@@ -117,7 +117,7 @@ function savePayment(id){
   var detail = $("#detail").val();
 
 
-  axios.post('/accounting/add-payment', {project:id, amount:amount, detail:detail}).then((res) => {
+  axios.post('/accounting/add-payment', {id:id, amount:amount, detail:detail}).then((res) => {
     toastr[res.data.type](res.data.message);
     if(res.data.status){
       setInterval(() => {

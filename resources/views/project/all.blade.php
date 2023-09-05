@@ -29,9 +29,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
                   <a class="dropdown-item d-flex align-items-center" href="/project/detail/{{$project->id}}"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">Detay</span></a>
-                  <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Düzenle</span></a>
-                  <a class="dropdown-item d-flex align-items-center border-bottom mb-2 pb-2" href="javascript:;" onclick="addTime({{ $project->id }})"><i data-feather="plus" class="icon-sm me-2"></i> <span class="">Çalışma Ekle</span></a>
                   
+                  <a class="dropdown-item d-flex align-items-center border-bottom mb-2 pb-2" href="javascript:;" onclick="addTime({{ $project->id }})"><i data-feather="plus" class="icon-sm me-2"></i> <span class="">Çalışma Ekle</span></a>
                   <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:;" onclick="deleteProject({{$project->id}})"><i data-feather="trash" class="icon-sm me-2 text-danger"></i> <span class="">Projeyi Sil</span></a>
                 </div>
               </div>

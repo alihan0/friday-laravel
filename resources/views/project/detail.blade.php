@@ -124,6 +124,7 @@
             <button class="btn btn-secondary col-12 mb-2 text-white">Süre Uzat</button>
             <button class="btn btn-primary col-12 mb-2">Görev Ekle</button>
             <button class="btn btn-primary col-12 mb-2">Not Ekle</button>
+            <button class="btn btn-success col-12 mb-2">Projeyi Tamamla</button>
             <button class="btn btn-danger col-12 mb-2">Projeyi Sil</button>
       
       </div>
@@ -161,6 +162,7 @@ function addPayment(id){
                       </div>
                     </div>
                     <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
                       <button class="btn btn-primary" id="savePaymentButton" onclick="savePayment(${id})">Ekle</button>  
                     </div>
                 </div>

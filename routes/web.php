@@ -40,4 +40,5 @@ Route::controller(ProjectController::class)->prefix('project')->middleware('auth
 
 Route::controller(AccountingController::class)->prefix('accounting')->middleware('auth')->group(function(){
     Route::post('/add-payment', 'add_payment');
+    Route::post('/remove-payment', 'remove_payment');
 });

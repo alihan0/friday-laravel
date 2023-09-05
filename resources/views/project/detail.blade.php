@@ -73,7 +73,7 @@
                       <td>{{$payment->amount}} ₺</td>
                       <td>{{$payment->detail}} </td>
                       <td>
-                        <button class="btn btn-danger btn-sm p-1 m-0"><i class="icon-sm" data-feather="trash"></i></button>
+                        <button class="btn btn-danger btn-sm p-1 m-0" onclick="removePayment({{$payment->id}})"><i class="icon-sm" data-feather="trash"></i></button>
                       </td>
                     </tr>
                 @endforeach
@@ -185,6 +185,17 @@ function savePayment(id){
 
 
   axios.post('/accounting/add-payment', {id:id, amount:amount, detail:detail}).then((res) => {
+    toastr[res.data.type](res.data.message);
+    if(res.data.status){
+      setInterval(() => {
+        window.location.reload();
+      }, 1000);
+    }
+  });
+}
+
+function removePayment(id){
+  axios.post('/accounting/remove-payment', {id:id}).then((res) => {
     toastr[res.data.type](res.data.message);
     if(res.data.status){
       setInterval(() => {

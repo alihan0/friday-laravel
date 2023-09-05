@@ -40,4 +40,21 @@ class AccountingController extends Controller
 
         return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
     }
+
+    public function remove_payment(Request $request){   
+
+        if($request->id){
+            $payment = Payment::find($request->id);
+            if($payment){
+                $payment->delete();
+                $this->type = "success";
+                $this->message = "Ödeme kaldırıldı.";
+                $this->status = true;
+            }else{
+                $this->type = "error";
+                $this->message = "Ödeme bulunamadı!";
+            }
+        }
+        return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
+    }
 }

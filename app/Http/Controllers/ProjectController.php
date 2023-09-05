@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Offer;
 use App\Models\Payment;
 use App\Models\Project;
+use App\Models\Task;
 use App\Models\Tech;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -125,6 +126,24 @@ class ProjectController extends Controller
             }else{
                 $this->type = "error";
                 $this->message = "Proje verilerine ulaşılamadı!";
+            }
+        }
+
+        return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
+    }
+
+    public function add_task(Request $request){
+
+        if($request->id){
+            if(empty($request->task)){
+                $this->message = "Görev girin!";
+            }else{
+                $task = Task::create([
+                    "user" => Auth::user()->id,
+                    "project" => $request,
+                    "task" => $request->task,
+                    "status" => 1
+                ]);
             }
         }
 

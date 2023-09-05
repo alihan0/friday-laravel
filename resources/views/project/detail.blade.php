@@ -122,7 +122,7 @@
             <button class="btn btn-success col-12 mb-2" onclick="addPayment({{$project->id}})">Ödeme Ekle</button>
             <button class="btn btn-warning col-12 mb-2 text-white">Çalışma Süresi Ekle</button>
             <button class="btn btn-secondary col-12 mb-2 text-white">Süre Uzat</button>
-            <button class="btn btn-primary col-12 mb-2" onclick="addTast({{$project->id}})">Görev Ekle</button>
+            <button class="btn btn-primary col-12 mb-2" onclick="addTask({{$project->id}})">Görev Ekle</button>
             <button class="btn btn-primary col-12 mb-2">Not Ekle</button>
             <button class="btn btn-success col-12 mb-2">Projeyi Tamamla</button>
             <button class="btn btn-danger col-12 mb-2">Projeyi Sil</button>
@@ -205,6 +205,60 @@ function removePayment(id){
       }, 1000);
     }
   });
+}
+
+function addTask(id){
+  var modal = document.createElement('div');
+        modal.className = 'modal fade';
+        modal.id = 'dynamicModal'; // Modalın ID'sini istediğiniz gibi ayarlayın
+
+        // Modal içeriği
+        modal.innerHTML = `
+            <div class="modal-dialog" data-bs-backdrop="static">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Görev Ekle</h5>
+                    </div>
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="task" class="form-label">Görev:</label>
+                        <input type="text" class="form-control" id="task">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                      <button class="btn btn-primary" id="saveTaskButton" onclick="saveTask(${id})">Ekle</button>  
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Modalı body içine ekleyin
+        document.body.appendChild(modal);
+
+        // Modalı başlatın
+        var dynamicModal = new bootstrap.Modal(modal, { backdrop: 'static', keyboard: false });
+        dynamicModal.show();
+}
+
+function saveTask(id){
+
+
+  $("#saveTaskButton").attr('disabled', true);
+
+  var task = $("#task").val();
+  
+
+
+  axios.post('/project/add-task', {id:id, task:task}).then((res) => {
+    toastr[res.data.type](res.data.message);
+    if(res.data.status){
+      setInterval(() => {
+        window.location.reload();
+      }, 1000);
+    }
+  });
+
 }
 
     

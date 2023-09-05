@@ -36,6 +36,7 @@ Route::controller(ProjectController::class)->prefix('project')->middleware('auth
     Route::post('/proccess/save', 'proccess_save');
     Route::post('/delete', 'delete');
     Route::post('/add-work-time', 'add_work_time');
+    Route::post('/add-task', 'add_task');
 });
 
 Route::controller(AccountingController::class)->prefix('accounting')->middleware('auth')->group(function(){

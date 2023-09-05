@@ -186,17 +186,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="d-flex justify-content-between mb-3">
-                          <a class="btn btn-success">30 DK</a>
-                          <a class="btn btn-success">1 Saat</a>
-                          <a class="btn btn-success">3 Saat</a>
-                          <a class="btn btn-success">5 Saat</a>
-                          <a class="btn btn-success">10 Saat</a>
-                          <a class="btn btn-success">1 Gün</a>  
+                          <button class="btn btn-success timeBtn" onclick="addWorkTime(1800, ${id})">30 DK</button>
+                          <button class="btn btn-success timeBtn" onclick="addWorkTime(3600, ${id})">1 Saat</button>
+                          <button class="btn btn-success timeBtn" onclick="addWorkTime(10800, ${id})">3 Saat</button>
+                          <button class="btn btn-success timeBtn" onclick="addWorkTime(18000, ${id})">5 Saat</button>
+                          <button class="btn btn-success timeBtn" onclick="addWorkTime(36000, ${id})">10 Saat</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
-                        <button type="button" class="btn btn-primary">Kaydet</button>
                     </div>
                 </div>
             </div>
@@ -208,8 +203,20 @@
         // Modalı başlatın
         var dynamicModal = new bootstrap.Modal(modal, { backdrop: 'static', keyboard: false });
         dynamicModal.show();
+        
+        
+
     }
 
+    function addWorkTime(time, id){
+          $(".timeBtn").attr("disabled", true);
+          axios.post('/project/add-work-time', {time:time, id:id}).then((res)=>{
+            toastr[res.data.type](res.data.message);
+            if(res.data.status){
+              window.location.reload();
+            }
+          });
+        }
 </script>
 
 

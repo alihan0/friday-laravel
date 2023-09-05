@@ -105,4 +105,28 @@ class ProjectController extends Controller
         }
         return response(["status" => $this->status, "message" => $this->message, "icon" => $this->icon]);
     }
+
+    public function add_work_time(Request $request){
+        if($request->id && $request->time){
+            $project = Project::find($request->id);
+            if($project){
+                $time = $project->passing_time;
+                $new_time = $time + $request->time;
+                $project->passing_time = $new_time;
+                if($project->save()){
+                    $this->type = "success";
+                    $this->message = "Çalışma süresi başarıyla eklendi";
+                    $this->status = true;
+                }else{
+                    $this->type = "error";
+                    $this->message = "Çalışma süresi eklenirken bir hata oluştu";
+                }
+            }else{
+                $this->type = "error";
+                $this->message = "Proje verilerine ulaşılamadı!";
+            }
+        }
+
+        return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
+    }
 }

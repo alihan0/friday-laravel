@@ -122,7 +122,7 @@
             <button class="btn btn-success col-12 mb-2" onclick="addPayment({{$project->id}})">Ödeme Ekle</button>
             <button class="btn btn-warning col-12 mb-2 text-white">Çalışma Süresi Ekle</button>
             <button class="btn btn-secondary col-12 mb-2 text-white">Süre Uzat</button>
-            <button class="btn btn-primary col-12 mb-2">Görev Ekle</button>
+            <button class="btn btn-primary col-12 mb-2" onclick="addTast({{$project->id}})">Görev Ekle</button>
             <button class="btn btn-primary col-12 mb-2">Not Ekle</button>
             <button class="btn btn-success col-12 mb-2">Projeyi Tamamla</button>
             <button class="btn btn-danger col-12 mb-2">Projeyi Sil</button>

@@ -42,6 +42,7 @@ Route::controller(ProjectController::class)->prefix('project')->middleware('auth
     Route::post('/task/cancel', 'cancel_task');
     Route::post('/note/new', 'add_note');
     Route::post('/note/remove', 'remove_note');
+    Route::post('/complate', 'complate');
 });
 
 Route::controller(AccountingController::class)->prefix('accounting')->middleware('auth')->group(function(){

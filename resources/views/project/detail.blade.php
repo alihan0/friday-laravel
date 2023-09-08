@@ -10,12 +10,20 @@
 @endsection
 
 @section('content')
+
+
+
     <div class="row mb-4">
         <div class="col">
             <h4 class="card-title border-bottom pb-3">Proje Detayları: #{{$project->id}}</h4>
         </div>
     </div>
     
+    @if ($project->status == 2)
+    <div class="alert alert-success" role="alert">
+      Bu proje başarıyla tamamlandı.
+    </div>
+    @endif
 
     <div class="row">
       <div class="col-3">
@@ -69,7 +77,7 @@
           </div>
         </div>
       </div>
-      <div class="col-7">
+      <div class="{{$project->status == 2 ? 'col-9' : 'col-7'}}">
         
         <div class="row mb-4">
           <div class="card card-body">
@@ -187,14 +195,14 @@
           </div>
         </div>
       </div>
-      <div class="col-2">
+      <div class="{{$project->status == 2 ? 'd-none' : 'col-2'}}">
       
             <button class="btn btn-success col-12 mb-2" onclick="addPayment({{$project->id}})">Ödeme Ekle</button>
             <button class="btn btn-warning col-12 mb-2 text-white" onclick="addTime({{$project->id}})">Çalışma Süresi Ekle</button>
             <button class="btn btn-secondary col-12 mb-2 text-white" onclick="extendTime({{$project->id}})">Süre Uzat</button>
             <button class="btn btn-primary col-12 mb-2" onclick="addTask({{$project->id}})">Görev Ekle</button>
             <button class="btn btn-primary col-12 mb-2" onclick="addNote({{$project->id}})">Not Ekle</button>
-            <button class="btn btn-success col-12 mb-2">Projeyi Tamamla</button>
+            <button class="btn btn-success col-12 mb-2" onclick="complateProject({{$project->id}})">Projeyi Tamamla</button>
             <button class="btn btn-danger col-12 mb-2">Projeyi Sil</button>
       
       </div>
@@ -501,6 +509,7 @@ function extendTime(id){
   });
   modal.fire();
 }
+
 function extendWorkTime(time, id){
   $(".extendTimeBtn").attr("disabled", true);
   axios.post('/project/extend-work-time', {time:time, id:id}).then((res)=>{
@@ -509,6 +518,17 @@ function extendWorkTime(time, id){
       window.location.reload();
     }
   });
+}
+
+function complateProject(id){
+  axios.post('/project/complate', {id:id}).then((res) => {
+    toastr[res.data.type](res.data.message);
+    if(res.data.status){
+      setInterval(() => {
+        window.location.reload();
+      },1000)
+    }
+  })
 }
     
 </script>

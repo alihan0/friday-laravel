@@ -256,4 +256,21 @@ class ProjectController extends Controller
         }
         return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
     }
+
+    public function complate(Request $request){
+        if($request->id){
+            $project = Project::find($request->id);
+            if($project){
+                $project->status = 2;
+                if($project->save()){
+                    $this->type = "success";
+                    $this->message = "Proje Tamamlandı";
+                    $this->status = true;
+                }
+            }else{
+                $this->message = "Proje bulunamadı";
+            }
+        }
+        return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
+    }
 }

@@ -147,8 +147,6 @@
 
 
     function deleteProject(id){
-      
-
       swal.fire({
         title: "Silmek istediginize emin misiniz?",
         text : "Projeyi sildiğiniz, projenizle birlikte tüm verileri silinecek. Bu işlem geri alınamaz.",
@@ -167,7 +165,6 @@
           })
         }
       })
-
     }
 
     function addTime(id) {

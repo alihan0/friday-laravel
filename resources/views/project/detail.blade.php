@@ -203,7 +203,7 @@
             <button class="btn btn-primary col-12 mb-2" onclick="addTask({{$project->id}})">Görev Ekle</button>
             <button class="btn btn-primary col-12 mb-2" onclick="addNote({{$project->id}})">Not Ekle</button>
             <button class="btn btn-success col-12 mb-2" onclick="complateProject({{$project->id}})">Projeyi Tamamla</button>
-            <button class="btn btn-danger col-12 mb-2">Projeyi Sil</button>
+            <button class="btn btn-danger col-12 mb-2" onclick="deleteProject({{$project->id}})">Projeyi Sil</button>
       
       </div>
     </div>
@@ -527,6 +527,27 @@ function complateProject(id){
       setInterval(() => {
         window.location.reload();
       },1000)
+    }
+  })
+}
+
+function deleteProject(id){
+  swal.fire({
+    title: "Silmek istediginize emin misiniz?",
+    text : "Projeyi sildiğiniz, projenizle birlikte tüm verileri silinecek. Bu işlem geri alınamaz.",
+    confirmButtonText: "Evet, Sil",
+    showCancelButton: true,
+    cancelButtonText: "Vazgeç"
+  }).then((confirm) => {
+    if(confirm.isConfirmed){
+      axios.post('/project/delete', {id: id}).then((response) => {
+        swal.fire({
+          icon: response.data.icon,
+          title: response.data.message,
+        }).then(()=>{
+          window.location.assign('/project/all');
+        })
+      })
     }
   })
 }

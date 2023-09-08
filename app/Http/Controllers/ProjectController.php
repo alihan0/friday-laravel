@@ -91,9 +91,12 @@ class ProjectController extends Controller
 
     public function delete(Request $request){
         if($request->id){
-            $p = Project::find($request->id);
-            if($p){
-                if($p->delete()){
+            $project = Project::find($request->id);
+            $task = Task::where('project',$request->id);
+            $note = Note::where('project',$request->id);
+            $payment = Payment::where('project',$request->id);
+            if($project){
+                if($project->delete() && $task->delete() && $note->delete() && $payment->delete()){
                     $this->icon = "success";
                     $this->message = "Proje verileri başarıyla silindi.";
                     $this->status = true;

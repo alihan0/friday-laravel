@@ -63,7 +63,7 @@
                 <section>
                     <div class="mb-3 border-bottom">
                         <h6 class="border-bottom pb-3">Back-end Teknolojileri</h6>
-                        <select class="selectform form-select" id="backend" name="backend" multiple="multiple" data-width="100%">
+                        <select class="selectform form-select" id="backend"  multiple="multiple" data-width="100%">
                             @if ($techs->count() > 0)
                                 @foreach ($techs as $tech)
                                     <option value="{{ $tech->id }}">{{$tech->title}}</option>
@@ -75,7 +75,7 @@
 
                     <div class="mb-3 border-bottom">
                         <h6 class="border-bottom pb-3">Front-end Teknolojileri</h6>
-                        <select class="selectform form-select" id="frontend" name="frontend" multiple="multiple" data-width="100%">
+                        <select class="selectform form-select" id="frontend"  multiple="multiple" data-width="100%">
                             @if ($techs->count() > 0)
                                 @foreach ($techs as $tech)
                                     <option value="{{ $tech->id }}">{{$tech->title}}</option>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="mb-3 border-bottom">
                         <h6 class="border-bottom pb-3">Veritabanı Teknolojileri</h6>
-                        <select class="selectform form-select" id="db" name="db" multiple="multiple" data-width="100%">
+                        <select class="selectform form-select" id="db"  multiple="multiple" data-width="100%">
                             @if ($techs->count() > 0)
                                 @foreach ($techs as $tech)
                                     <option value="{{ $tech->id }}">{{$tech->title}}</option>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="mb-3 border-bottom">
                         <h6 class="border-bottom pb-3">Güvenlik Teknolojileri</h6>
-                        <select class="selectform form-select" id="security" name="security" multiple="multiple" data-width="100%">
+                        <select class="selectform form-select" id="security"multiple="multiple" data-width="100%">
                             @if ($techs->count() > 0)
                                 @foreach ($techs as $tech)
                                     <option value="{{ $tech->id }}">{{$tech->title}}</option>
@@ -168,7 +168,11 @@ $("#wizardVertical").steps({
     stepsOrientation: 'vertical',
     onFinishing: function (event, currentIndex)
     {
-        const formData = $("#offerForm").serialize();
+        var formData = $("#offerForm").serialize();
+        formData += '&backend=' + $('#backend').val();
+        formData += '&frontend=' + $('#frontend').val();
+        formData += '&db=' + $('#db').val();
+        formData += '&security=' + $('#security').val();
         
         axios.post('/offer/save', formData).then((res) => {
             toastr[res.data.type](res.data.message);
@@ -188,6 +192,7 @@ $(document).ready(function() {
     $('#security').select2();
     $('#version').select2();
 });
+
 
 </script>
 @endsection

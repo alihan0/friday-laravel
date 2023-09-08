@@ -12,78 +12,72 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-              
-
                 <div class="row">
                     <div class="col-6">
-                        <form id="customerForm">
+                        <form id="customerForm" action="javascript:;">
                             <div class="mb-3">
-                                <label for="company" class="form-label">Şirket</label>
-                                <input type="text" class="form-control" id="company" autocomplete="off" placeholder="Şirketin adı">
+                                <label for="company" class="form-label">Şirket <b>*</b></label>
+                                <input type="text" class="form-control" id="company" name="company" autocomplete="off" placeholder="Şirketin adı">
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Müşteri Adı</label>
-                                <input type="text" class="form-control" id="name" autocomplete="off" placeholder="Müşterinin adı soyadı">
+                                <label for="name" class="form-label">Müşteri Adı <b>*</b></label>
+                                <input type="text" class="form-control" id="name" name="name" autocomplete="off" placeholder="Müşterinin adı soyadı">
                             </div>
                             <div class="row">
                                 <div class="col-4">
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Telefon</label>
-                                        <input type="text" class="form-control" id="phone" autocomplete="off" placeholder="Şirket telefonu">
+                                        <input type="text" class="form-control" id="phone" name="phone" autocomplete="off" placeholder="Şirket telefonu">
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">E-posta</label>
-                                        <input type="text" class="form-control" id="email" autocomplete="off" placeholder="İletişim e-posta adresi">
+                                        <label for="email" class="form-label">E-posta <b>*</b></label>
+                                        <input type="text" class="form-control" id="email" name="email" autocomplete="off" placeholder="İletişim e-posta adresi">
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="mb-3">
-                                        <label for="gsm" class="form-label">GSM</label>
-                                        <input type="text" class="form-control" id="gsm" autocomplete="off" placeholder="İletişim telefon">
+                                        <label for="gsm" class="form-label">GSM <b>*</b></label>
+                                        <input type="text" class="form-control" id="gsm" name="gsm" autocomplete="off" placeholder="İletişim telefon">
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="website" class="form-label">Web Site</label>
-                                <input type="text" class="form-control" id="website" autocomplete="off" placeholder="Web site">
+                                <input type="text" class="form-control" id="website" name="website" autocomplete="off" placeholder="Web site">
                             </div>
                     </div>
                     <div class="col-6">
-                        
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Açık Adres</label>
-                                <input type="text" class="form-control" id="address" autocomplete="off" placeholder="Şirketin açık adresi">
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label for="countru" class="form-label">Ülke</label>
-                                        <input type="text" class="form-control" id="countru" autocomplete="off" placeholder="Ülke">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label for="city" class="form-label">Şehir</label>
-                                        <input type="text" class="form-control" id="city" autocomplete="off" placeholder="Şehir">
-                                    </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Açık Adres</label>
+                            <input type="text" class="form-control" id="address" name="address" autocomplete="off" placeholder="Şirketin açık adresi">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="country" class="form-label">Ülke</label>
+                                    <input type="text" class="form-control" id="country" name="country" autocomplete="off" placeholder="Ülke">
                                 </div>
                             </div>
-                            
-                            <div class="mb-3">
-                                <label for="logo" class="form-label">Logo</label>
-                                <input type="file" class="form-control" id="logo" autocomplete="off" onchange="uploadFile(this)">
-                                <input type="hidden" id="logoData" name="logoData">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="city" class="form-label">Şehir</label>
+                                    <input type="text" class="form-control" id="city" name="city" autocomplete="off" placeholder="Şehir">
+                                </div>
                             </div>
-                            <div class="mb-3 float-end">
-                                <button class="btn btn-primary" onclick="saveCustomer()">Oluştur</button>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="mb-5">
+                            <label for="logo" class="form-label">Logo</label>
+                            <input type="file" class="form-control" id="logo" name="logo" autocomplete="off" onchange="uploadFile(this)">
+                            <input type="text" id="logoData" name="logoData" value="/static/assets/images/logo.jpeg">
+                        </div>
+                        <div class="float-end">
+                            <button class="btn btn-primary" onclick="saveCustomer()">Oluştur</button>
+                        </div>
                     </div>
+                </form>                        
                 </div>
-
-
             </div> 
           </div>
     </div>
@@ -113,7 +107,7 @@ function saveCustomer(){
         toastr[res.data.type](res.data.message);
         if(res.data.status){
             setInterval(() => {
-                window.location.assign('/customer/all');
+               window.location.assign('/customer/all');
             }, 1000);
         }
     })

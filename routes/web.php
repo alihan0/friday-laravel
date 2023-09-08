@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(MainController::class)->middleware('auth')->group(function(){
     Route::get('/', 'dashboard');
+    Route::post('/upload', 'upload');
 });
 
 Route::controller(AuthController::Class)->prefix('auth')->group(function(){
@@ -53,4 +54,5 @@ Route::controller(AccountingController::class)->prefix('accounting')->middleware
 
 Route::controller(CustomerController::class)->prefix('customer')->middleware('auth')->group(function(){
     Route::get('/all', 'all');
+    Route::get('/new', 'new');
 });

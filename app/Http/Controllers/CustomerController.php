@@ -10,4 +10,8 @@ class CustomerController extends Controller
     public function all(){
         return view('customer.all', ['customers' => Customer::orderBy('id','desc')->get()]);
     }
+
+    public function new(){
+        return view('customer.new');
+    }
 }

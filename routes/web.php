@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountingController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
@@ -48,4 +49,8 @@ Route::controller(ProjectController::class)->prefix('project')->middleware('auth
 Route::controller(AccountingController::class)->prefix('accounting')->middleware('auth')->group(function(){
     Route::post('/add-payment', 'add_payment');
     Route::post('/remove-payment', 'remove_payment');
+});
+
+Route::controller(CustomerController::class)->prefix('customer')->middleware('auth')->group(function(){
+    Route::get('/all', 'all');
 });

@@ -21,6 +21,7 @@ class AccountingController extends Controller
                 $payment = Payment::create([
                     "user" => Auth::user()->id,
                     "project" => $request->id,
+                    "customer" => $project->customer,
                     "amount" => $request->amount,
                     "detail" => $request->detail
                 ]);

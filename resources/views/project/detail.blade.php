@@ -19,7 +19,7 @@
 
     <div class="row">
       <div class="col-3">
-        <div class="card">
+        <div class="card mb-4">
           <div class="card-body">
             <h6 class="card-title mb-2 pb-2 border-bottom">{{$project->title}}</h6>
 
@@ -46,6 +46,26 @@
                   <i data-feather="github"></i>
                 </a>
               </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="ProjectChart" data-pass="{{$project->passing_time}}" data-require="{{$project->required_time}}"></div>
+            <div class="row mb-3">
+              <div class="col-6 d-flex justify-content-end">
+                <div>
+                  <label class="d-flex align-items-center justify-content-end tx-10 text-uppercase fw-bolder">Geçen Süre <span class="p-1 ms-1 rounded-circle bg-primary"></span></label>
+                  <h5 class="fw-bolder mb-0 text-end">{{$project->passing_time > 0 ? formatSeconds($project->passing_time) : "-"}}</h5>
+                </div>
+              </div>
+              <div class="col-6">
+                <div>
+                  <label class="d-flex align-items-center tx-10 text-uppercase fw-bolder"><span class="p-1 me-1 rounded-circle bg-secondary"></span> Kalan Zaman</label>
+                  <h5 class="fw-bolder mb-0">{{ formatSeconds($project->required_time - $project->passing_time)}}</h5>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -137,7 +157,7 @@
 
         <div class="row mb-4">
           <div class="card card-body">
-            <h4 class="card-title border-bottom pb-3">Görevler</h4>
+            <h4 class="card-title border-bottom pb-3">Notlar</h4>
             
             @if ($tasks->count() > 0)
             <table class="table ">
@@ -171,7 +191,7 @@
       
             <button class="btn btn-success col-12 mb-2" onclick="addPayment({{$project->id}})">Ödeme Ekle</button>
             <button class="btn btn-warning col-12 mb-2 text-white" onclick="addTime({{$project->id}})">Çalışma Süresi Ekle</button>
-            <button class="btn btn-secondary col-12 mb-2 text-white">Süre Uzat</button>
+            <button class="btn btn-secondary col-12 mb-2 text-white" onclick="extendTime({{$project->id}})">Süre Uzat</button>
             <button class="btn btn-primary col-12 mb-2" onclick="addTask({{$project->id}})">Görev Ekle</button>
             <button class="btn btn-primary col-12 mb-2" onclick="addNote({{$project->id}})">Not Ekle</button>
             <button class="btn btn-success col-12 mb-2">Projeyi Tamamla</button>
@@ -187,7 +207,82 @@
 <script src="/static/assets/vendors/select2/select2.min.js"></script>
 <script src="/static/assets/js/select2.js"></script>
 <script src="/static/assets/js/flatpickr.js"></script>
+<script src="/static/assets/vendors/apexcharts/apexcharts.min.js"></script>
 <script>
+
+$(".ProjectChart").each(function(index, element) {
+        var passingtime = $(element).attr('data-pass'); 
+        var required_time = $(element).attr('data-require'); 
+
+        var progressPercentage = (passingtime / required_time) * 100;
+        var remainingPercentage = 100 - progressPercentage;
+        var formattedProgress = (progressPercentage).toFixed(2);
+
+        var progressColor = "#ddd"; 
+
+        if (progressPercentage >= 0 && progressPercentage < 20) {
+            progressColor = "#b91c1c"; 
+        } else if (progressPercentage >= 20 && progressPercentage < 40) {
+            progressColor = "#2563eb"; 
+        } else if (progressPercentage >= 40 && progressPercentage < 60) {
+            progressColor = "#1e40af"; 
+        } else if (progressPercentage >= 60 && progressPercentage < 80) {
+            progressColor = "#a3e635"; 
+        } else if (progressPercentage >= 80 && progressPercentage <= 99) {
+            progressColor = "#22c55e"; 
+        } else if (progressPercentage >= 99) {
+            progressColor = "#15803d"; 
+        }
+
+        var options = {
+            chart: {
+                height: 260,
+                type: "radialBar"
+            },
+            series: [formattedProgress],
+            colors: [progressColor],
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        margin: 15,
+                        size: "70%"
+                    },
+                    track: {
+                        show: true,
+                        background: "#e9ecef",
+                        strokeWidth: '100%',
+                        opacity: 1,
+                        margin: 5,
+                    },
+                    dataLabels: {
+                        showOn: "always",
+                        name: {
+                            offsetY: -11,
+                            show: true,
+                            color: "#6c757d",
+                            fontSize: "13px"
+                        },
+                        value: {
+                            color: "#343a40",
+                            fontSize: "30px",
+                            show: true
+                        }
+                    }
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            stroke: {
+                lineCap: "round",
+            },
+            labels: ["İlerleme"]
+        };
+
+        // Her bir kartın içindeki grafik öğesine grafik ekleyin
+        var chart = new ApexCharts(element, options);
+        chart.render();
+    });
 
 function addPayment(id){
   var modal = document.createElement('div');
@@ -375,6 +470,32 @@ function addTime(id){
                 <button class="btn btn-success timeBtn" onclick="addWorkTime(10800, ${id})">3 Saat</button>
                 <button class="btn btn-success timeBtn" onclick="addWorkTime(18000, ${id})">5 Saat</button>
                 <button class="btn btn-success timeBtn" onclick="addWorkTime(36000, ${id})">10 Saat</button>
+              </div>`
+
+  });
+  modal.fire();
+}
+function addWorkTime(time, id){
+  $(".timeBtn").attr("disabled", true);
+  axios.post('/project/add-work-time', {time:time, id:id}).then((res)=>{
+    toastr[res.data.type](res.data.message);
+    if(res.data.status){
+      window.location.reload();
+    }
+  });
+}
+
+function extendTime(id){
+  const modal = new MellowModal({
+    id : 'extendTimeModal',
+    title : 'Proje Süresi Uzat',
+    footer: false,
+    content : `<div class="d-flex justify-content-between mb-3">
+                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(3600, ${id})">1 Saat</button>
+                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(21600, ${id})">6 Saat</button>
+                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(43200, ${id})">12 Saat</button>
+                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(86400, ${id})">1 Gün</button>
+                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(604800, ${id})">7 Gün</button>
               </div>`
 
   });

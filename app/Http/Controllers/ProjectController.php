@@ -65,7 +65,7 @@ class ProjectController extends Controller
     }
 
     public function detail($id){
-        return view('project.detail', ["project" => Project::find($id), 'payments' => Payment::where('project', $id)->orderBy('id', 'desc')->get(), 'tasks' => Task::where('project', $id)->orderBy('id','desc')->get()]);
+        return view('project.detail', ["project" => Project::find($id), 'payments' => Payment::where('project', $id)->orderBy('id', 'desc')->get(), 'tasks' => Task::where('project', $id)->orderBy('id','desc')->get(), 'notes' => Note::where('project',$id)->orderBy('id','desc')->get()]);
     }
 
     public function all(){

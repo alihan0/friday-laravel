@@ -62,7 +62,7 @@
                 
                 @foreach ($tasks as $task)
                     <tr>
-                      <td class="{{$task->status == 2 ? 'text-success text-decoration-line-through' : ($task->status == 0 ? 'text-danger text-decoration-line-through' : '')}}"><span>{{$task->task}}</span></td>
+                      <td class="{{$task->status == 2 ? 'text-success text-decoration-line-through' : ($task->status == 0 ? 'text-danger text-decoration-line-through' : '')}}"><span class="text-wrap">{{$task->task}}</span></td>
                       <td class="d-flex justify-content-end">
                         @if ($task->status == 1)
                           <button class="btn text-success btn-sm p-0 m-0" onclick="checkTask({{$task->id}})"><i class="icon-sm" data-feather="check"></i></button>
@@ -114,9 +114,9 @@
                     <tr>
                       <td>{{$payment->id}}</td>
                       <td>{{$payment->amount}} ₺</td>
-                      <td>{{$payment->detail}} </td>
+                      <td><span class="text-wrap">{{$payment->detail}}</span></td>
                       <td class="d-flex justify-content-end">
-                        <button class="btn btn-danger btn-sm p-1 m-0" onclick="removePayment({{$payment->id}})"><i class="icon-sm" data-feather="trash"></i></button>
+                        <button class="btn btn-sm p-1 m-0" onclick="removePayment({{$payment->id}})"><i class="icon-sm" data-feather="trash"></i></button>
                       </td>
                     </tr>
                 @endforeach
@@ -135,20 +135,37 @@
           </div>
         </div>
 
-        
-
         <div class="row mb-4">
           <div class="card card-body">
-            <h4 class="card-title border-bottom pb-3">Notlar</h4>
+            <h4 class="card-title border-bottom pb-3">Görevler</h4>
+            
+            @if ($tasks->count() > 0)
+            <table class="table ">
+              
+              <tbody>
+                
+                @foreach ($notes as $note)
+                    <tr>
+                      <td><p class="text-wrap">{{$note->note}}</p></td>
+                      <td class="d-flex justify-content-end">
+                        <button class="btn btn-sm p-1 m-0" onclick="removeNote({{$note->id}})"><i class="icon-sm" data-feather="trash"></i></button>
+                      </td>
+                    </tr>
+                @endforeach
+                
+              </tbody>
+            </table>
+            @else
             <div class="px-4 pt-4 my-5 text-center">
               <h1 class="display-5 fw-bold text-body-emphasis">Not Bulunamadı</h1>
               <div class="col-12 mx-auto">
                 <p class="lead mb-4">Bu proje için henüz bir not kaydı bulunamadı. Eğer bir not almak istiyorsanız aksiyon menüsünden <code>Not Ekle</code> butonunu kullanarak yeni not ekleyebilirsiniz.</p>
               </div>
             </div>
+            @endif
+
           </div>
         </div>
-
       </div>
       <div class="col-2">
       

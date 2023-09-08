@@ -46,13 +46,13 @@
           <div class="collapse" id="offers">
             <ul class="nav sub-menu">
               <li class="nav-item">
-                <a href="/customer/new" class="nav-link">Yeni Teklif</a>
+                <a href="/offer/new" class="nav-link">Yeni Teklif</a>
               </li>
               <li class="nav-item">
-                <a href="/customer/all" class="nav-link">Bekleyen Teklifler</a>
+                <a href="/offer/wait" class="nav-link">Bekleyen Teklifler</a>
               </li>
               <li class="nav-item">
-                <a href="/customer/all" class="nav-link">Tüm Teklifler</a>
+                <a href="/offer/all" class="nav-link">Tüm Teklifler</a>
               </li>
             </ul>
           </div>

@@ -62,10 +62,10 @@
                 
                 @foreach ($tasks as $task)
                     <tr>
-                      <td><span>{{$task->task}}</span></td>
+                      <td class="{{$task->status == 2 ? 'text-success text-decoration-line-through' : ($task->status == 0 ? 'text-danger text-decoration-line-through' : '')}}"><span>{{$task->task}}</span></td>
                       <td class="d-flex justify-content-end">
-                        <button class="btn  btn-sm p-0 m-0" ><i class="icon-sm" data-feather="check"></i></button>
-                        <button class="btn  btn-sm p-0 m-0"><i class="icon-sm" data-feather="x"></i></button>
+                        <button class="btn  btn-sm p-0 m-0" onclick="checkTask({{$task->id}})"><i class="icon-sm" data-feather="check"></i></button>
+                        <button class="btn  btn-sm p-0 m-0" onclick="cancelTask({{$task->id}})"><i class="icon-sm" data-feather="x"></i></button>
                       </td>
                     </tr>
                 @endforeach
@@ -76,7 +76,7 @@
             <div class="px-4 pt-4 my-5 text-center">
               <h1 class="display-5 fw-bold text-body-emphasis">Görev Bulunamadı</h1>
               <div class="col-12 mx-auto">
-                <p class="lead mb-4">Bu proje için henüz bir görev bulunamadı. Eğer görev eklemek istiyorsanız aksiyon menüsünden <code>Görev Ekle</code> butonunu kullanarak yeni görev ekleyebilirsiniz.</p>
+                <p class="lead mb-4 ">Bu proje için henüz bir görev bulunamadı. Eğer görev eklemek istiyorsanız aksiyon menüsünden <code>Görev Ekle</code> butonunu kullanarak yeni görev ekleyebilirsiniz.</p>
               </div>
             </div>
             @endif
@@ -272,7 +272,7 @@ function saveTask(id){
   
 
 
-  axios.post('/project/add-task', {id:id, task:task}).then((res) => {
+  axios.post('/project/task/new', {id:id, task:task}).then((res) => {
     toastr[res.data.type](res.data.message);
     if(res.data.status){
       setInterval(() => {
@@ -283,6 +283,16 @@ function saveTask(id){
 
 }
 
+function checkTask(id){
+  axios.post('/project/task/check', {id:id}).then((res) => {
+    window.location.reload();
+  });
+}
+function cancelTask(id){
+  axios.post('/project/task/cancel', {id:id}).then((res) => {
+    window.location.reload();
+  });
+}
     
 </script>
 @endsection

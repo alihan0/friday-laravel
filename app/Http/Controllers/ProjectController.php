@@ -157,4 +157,37 @@ class ProjectController extends Controller
 
         return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
     }
+
+    public function check_task(Request $request){
+        if($request->id){
+            $task = Task::find($request->id);
+            if($task){
+                $task->status = 2;
+                if($task->save()){
+                    $this->status = true;
+                }else{
+                    $this->message = "Görev onaylanamadı!";
+                }
+            }else{
+                $this->message = "Görev bulunamadı!";
+            }
+        }
+        return response(["status" => $this->status, "message" => $this->message, "type" => $this->type]);
+    }
+    public function cancel_task(Request $request){
+        if($request->id){
+            $task = Task::find($request->id);
+            if($task){
+                $task->status = 0;
+                if($task->save()){
+                    $this->status = true;
+                }else{
+                    $this->message = "Görev onaylanamadı!";
+                }
+            }else{
+                $this->message = "Görev bulunamadı!";
+            }
+        }
+        return response(["status" => $this->status, "message" => $this->message, "type" => $this->type]);
+    }
 }

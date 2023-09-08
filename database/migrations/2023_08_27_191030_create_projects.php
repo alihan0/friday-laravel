@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('detail');
             $table->integer('offer');
             $table->decimal('price', 9,2);
+            $table->string('github');
             $table->string('tech_stack');
             $table->string('start_at');
             $table->string('dead_line');

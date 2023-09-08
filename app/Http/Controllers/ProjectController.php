@@ -45,6 +45,7 @@ class ProjectController extends Controller
                 "detail" => $request->detail,
                 "offer" => $request->offer,
                 "price" => $request->price,
+                "github" => $request->github,
                 "tech_stack" => $request->techstack,
                 "start_at" => $request->start_date,
                 "dead_line" => $request->dead_line,

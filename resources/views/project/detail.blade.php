@@ -43,14 +43,18 @@
               </div>
               <div class="mt-3">
                 <label class="tx-11 fw-bolder mb-0 text-uppercase">İlerleme:</label>
-                <p class="text-muted">{{$project->passing_time}}</p>
+                <p class="text-muted">{{formatSeconds($project->passing_time)}}</p>
               </div>
               <div class="mt-3">
                 <label class="tx-11 fw-bolder mb-0 text-uppercase">Gereken Zaman:</label>
-                <p class="text-muted">{{$project->required_time}}</p>
+                <p class="text-muted">{{formatSeconds($project->required_time)}}</p>
+              </div>
+              <div class="mt-3">
+                <label class="tx-11 fw-bolder mb-0 text-uppercase">Kalan Zaman:</label>
+                <p class="text-muted">{{formatSeconds($project->required_time - $project->passing_time)}}</p>
               </div>
               <div class="mt-3 d-flex social-links">
-                <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
+                <a href="{{$project->github}}" target="_blank" class="btn btn-icon border btn-xs me-2">
                   <i data-feather="github"></i>
                 </a>
               </div>

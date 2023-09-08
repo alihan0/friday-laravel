@@ -178,7 +178,7 @@
 
         // Modal içeriği
         modal.innerHTML = `
-            <div class="modal-dialog" data-bs-backdrop="static">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Manuel Çalışma Süresi Ekle</h5>
@@ -208,14 +208,14 @@
     }
 
     function addWorkTime(time, id){
-          $(".timeBtn").attr("disabled", true);
-          axios.post('/project/add-work-time', {time:time, id:id}).then((res)=>{
-            toastr[res.data.type](res.data.message);
-            if(res.data.status){
-              window.location.reload();
-            }
-          });
-        }
+        $(".timeBtn").attr("disabled", true);
+        axios.post('/project/add-work-time', {time:time, id:id}).then((res)=>{
+          toastr[res.data.type](res.data.message);
+          if(res.data.status){
+            window.location.reload();
+          }
+        });
+      }
 </script>
 
 

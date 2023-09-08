@@ -170,7 +170,7 @@
       <div class="col-2">
       
             <button class="btn btn-success col-12 mb-2" onclick="addPayment({{$project->id}})">Ödeme Ekle</button>
-            <button class="btn btn-warning col-12 mb-2 text-white">Çalışma Süresi Ekle</button>
+            <button class="btn btn-warning col-12 mb-2 text-white" onclick="addTime({{$project->id}})">Çalışma Süresi Ekle</button>
             <button class="btn btn-secondary col-12 mb-2 text-white">Süre Uzat</button>
             <button class="btn btn-primary col-12 mb-2" onclick="addTask({{$project->id}})">Görev Ekle</button>
             <button class="btn btn-primary col-12 mb-2" onclick="addNote({{$project->id}})">Not Ekle</button>
@@ -364,6 +364,31 @@ function removeNote(id){
   })
 }
 
+function addTime(id){
+  const modal = new MellowModal({
+    id : 'addTimeModal',
+    title : 'Çalışma Süresi Ekle',
+    footer: false,
+    content : `<div class="d-flex justify-content-between mb-3">
+                <button class="btn btn-success timeBtn" onclick="addWorkTime(1800, ${id})">30 DK</button>
+                <button class="btn btn-success timeBtn" onclick="addWorkTime(3600, ${id})">1 Saat</button>
+                <button class="btn btn-success timeBtn" onclick="addWorkTime(10800, ${id})">3 Saat</button>
+                <button class="btn btn-success timeBtn" onclick="addWorkTime(18000, ${id})">5 Saat</button>
+                <button class="btn btn-success timeBtn" onclick="addWorkTime(36000, ${id})">10 Saat</button>
+              </div>`
+
+  });
+  modal.fire();
+}
+function addWorkTime(time, id){
+  $(".timeBtn").attr("disabled", true);
+  axios.post('/project/add-work-time', {time:time, id:id}).then((res)=>{
+    toastr[res.data.type](res.data.message);
+    if(res.data.status){
+      window.location.reload();
+    }
+  });
+}
     
 </script>
 @endsection

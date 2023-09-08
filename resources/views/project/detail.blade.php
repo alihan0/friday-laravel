@@ -156,7 +156,7 @@
             <button class="btn btn-warning col-12 mb-2 text-white">Çalışma Süresi Ekle</button>
             <button class="btn btn-secondary col-12 mb-2 text-white">Süre Uzat</button>
             <button class="btn btn-primary col-12 mb-2" onclick="addTask({{$project->id}})">Görev Ekle</button>
-            <button class="btn btn-primary col-12 mb-2">Not Ekle</button>
+            <button class="btn btn-primary col-12 mb-2" onclick="addNote({{$project->id}})">Not Ekle</button>
             <button class="btn btn-success col-12 mb-2">Projeyi Tamamla</button>
             <button class="btn btn-danger col-12 mb-2">Projeyi Sil</button>
       
@@ -303,6 +303,14 @@ function cancelTask(id){
   axios.post('/project/task/cancel', {id:id}).then((res) => {
     window.location.reload();
   });
+}
+
+function addNote(id){
+  const modal = new MellowModal({
+    id : 'addNoteModal',
+    title : 'Not Ekle',
+  });
+  modal.fire();
 }
     
 </script>

@@ -119,6 +119,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script src="/static/assets/js/toastr-init.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
+	<script src="/static/assets/js/mellow-modal.js"></script>
   	@yield('script')
 	<script>
 		function changePassword(){

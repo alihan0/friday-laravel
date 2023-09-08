@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Note;
 use App\Models\Offer;
 use App\Models\Payment;
 use App\Models\Project;
@@ -189,5 +190,28 @@ class ProjectController extends Controller
             }
         }
         return response(["status" => $this->status, "message" => $this->message, "type" => $this->type]);
+    }
+
+    public function add_note(Request $request){
+        if($request->id){
+            $project = Project::find($request->id);
+            if($project){
+                $note = Note::create([
+                    "user" => Auth::user()->id,
+                    "project" => $request->id,
+                    "note" => trim(ucfirst($request->note))
+                ]);
+                if($note){
+                    $this->type = "success";
+                    $this->message = "Not oluşturuldu";
+                    $this->status = true;
+                }else{
+                    $this->message = "Not oluşturulurken bir hata oluştu";
+                }
+            }else{
+                $this->message = "Proje bulunamadı";
+            }
+        }
+        return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
     }
 }

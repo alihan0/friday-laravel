@@ -309,9 +309,34 @@ function addNote(id){
   const modal = new MellowModal({
     id : 'addNoteModal',
     title : 'Not Ekle',
+    confirmButtonType : 'primary',
+    confirmButtonText : 'Ekle',
+    buttons: '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>',
+    backdrop: 'static',
+    showCloseButton: false,
+    content : `
+    <div class="mb-3">
+      <label for="note" class="form-label">Not</label>
+      <textarea class="form-control" id="note" rows="3"></textarea>
+    </div>
+    `
   });
   modal.fire();
+  $(document).on("click", "#addNoteModalBtn", function(){
+    var note = $("#note").val();
+    axios.post('/project/note/new', {id:id, note:note}).then((res) => {
+      toastr[res.data.type](res.data.message);
+      if(res.data.status){
+        setInterval(() => {
+          window.location.reload();
+        }, 500)
+      }
+    });
+  });
+  
 }
+
+
     
 </script>
 @endsection

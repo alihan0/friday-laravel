@@ -64,8 +64,19 @@
                     <tr>
                       <td class="{{$task->status == 2 ? 'text-success text-decoration-line-through' : ($task->status == 0 ? 'text-danger text-decoration-line-through' : '')}}"><span>{{$task->task}}</span></td>
                       <td class="d-flex justify-content-end">
-                        <button class="btn  btn-sm p-0 m-0" onclick="checkTask({{$task->id}})"><i class="icon-sm" data-feather="check"></i></button>
-                        <button class="btn  btn-sm p-0 m-0" onclick="cancelTask({{$task->id}})"><i class="icon-sm" data-feather="x"></i></button>
+                        @if ($task->status == 1)
+                          <button class="btn text-success btn-sm p-0 m-0" onclick="checkTask({{$task->id}})"><i class="icon-sm" data-feather="check"></i></button>
+                          <button class="btn text-danger  btn-sm p-0 m-0" onclick="cancelTask({{$task->id}})"><i class="icon-sm" data-feather="x"></i></button>
+                        @elseif($task->status == 2)
+                          
+                        <button class="btn  text-danger btn-sm p-0 m-0" onclick="cancelTask({{$task->id}})"><i class="icon-sm" data-feather="x"></i></button>
+                        
+                        
+                        @else
+                        <button class="btn text-success btn-sm p-0 m-0" onclick="checkTask({{$task->id}})"><i class="icon-sm" data-feather="check"></i></button>
+                        
+                        @endif
+                        
                       </td>
                     </tr>
                 @endforeach

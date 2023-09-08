@@ -214,4 +214,22 @@ class ProjectController extends Controller
         }
         return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
     }
+
+    public function remove_note(Request $request){
+        if($request->id){
+            $note = Note::find($request->id);
+            if($note){
+                if($note->delete()){
+                    $this->type = "success";
+                    $this->message = "Not silindi";
+                    $this->status = true;
+                }else{
+                    $this->message = "Not silinirken bir hata oluştu";
+                }
+            }else{
+                $this->message = "Not bulunamadı";
+            }
+        }
+        return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
+    }
 }

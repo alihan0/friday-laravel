@@ -133,6 +133,30 @@ class ProjectController extends Controller
         return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
     }
 
+    public function extend_work_time(Request $request){
+        if($request->id && $request->time){
+            $project = Project::find($request->id);
+            if($project){
+                $time = $project->required_time;
+                $new_time = $time + $request->time;
+                $project->required_time = $new_time;
+                if($project->save()){
+                    $this->type = "success";
+                    $this->message = "Proje süresi başarıyla uzatıldı";
+                    $this->status = true;
+                }else{
+                    $this->type = "error";
+                    $this->message = "Proje süresi uzatılırken bir hata oluştu";
+                }
+            }else{
+                $this->type = "error";
+                $this->message = "Proje verilerine ulaşılamadı!";
+            }
+        }
+
+        return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
+    }
+
     public function add_task(Request $request){
 
         if($request->id){

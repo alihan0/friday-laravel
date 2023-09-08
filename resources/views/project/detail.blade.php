@@ -211,78 +211,78 @@
 <script>
 
 $(".ProjectChart").each(function(index, element) {
-        var passingtime = $(element).attr('data-pass'); 
-        var required_time = $(element).attr('data-require'); 
+    var passingtime = $(element).attr('data-pass'); 
+    var required_time = $(element).attr('data-require'); 
 
-        var progressPercentage = (passingtime / required_time) * 100;
-        var remainingPercentage = 100 - progressPercentage;
-        var formattedProgress = (progressPercentage).toFixed(2);
+    var progressPercentage = (passingtime / required_time) * 100;
+    var remainingPercentage = 100 - progressPercentage;
+    var formattedProgress = (progressPercentage).toFixed(2);
 
-        var progressColor = "#ddd"; 
+    var progressColor = "#ddd"; 
 
-        if (progressPercentage >= 0 && progressPercentage < 20) {
-            progressColor = "#b91c1c"; 
-        } else if (progressPercentage >= 20 && progressPercentage < 40) {
-            progressColor = "#2563eb"; 
-        } else if (progressPercentage >= 40 && progressPercentage < 60) {
-            progressColor = "#1e40af"; 
-        } else if (progressPercentage >= 60 && progressPercentage < 80) {
-            progressColor = "#a3e635"; 
-        } else if (progressPercentage >= 80 && progressPercentage <= 99) {
-            progressColor = "#22c55e"; 
-        } else if (progressPercentage >= 99) {
-            progressColor = "#15803d"; 
-        }
+    if (progressPercentage >= 0 && progressPercentage < 20) {
+        progressColor = "#b91c1c"; 
+    } else if (progressPercentage >= 20 && progressPercentage < 40) {
+        progressColor = "#2563eb"; 
+    } else if (progressPercentage >= 40 && progressPercentage < 60) {
+        progressColor = "#1e40af"; 
+    } else if (progressPercentage >= 60 && progressPercentage < 80) {
+        progressColor = "#a3e635"; 
+    } else if (progressPercentage >= 80 && progressPercentage <= 99) {
+        progressColor = "#22c55e"; 
+    } else if (progressPercentage >= 99) {
+        progressColor = "#15803d"; 
+    }
 
-        var options = {
-            chart: {
-                height: 260,
-                type: "radialBar"
-            },
-            series: [formattedProgress],
-            colors: [progressColor],
-            plotOptions: {
-                radialBar: {
-                    hollow: {
-                        margin: 15,
-                        size: "70%"
-                    },
-                    track: {
+    var options = {
+        chart: {
+            height: 260,
+            type: "radialBar"
+        },
+        series: [formattedProgress],
+        colors: [progressColor],
+        plotOptions: {
+            radialBar: {
+                hollow: {
+                    margin: 15,
+                    size: "70%"
+                },
+                track: {
+                    show: true,
+                    background: "#e9ecef",
+                    strokeWidth: '100%',
+                    opacity: 1,
+                    margin: 5,
+                },
+                dataLabels: {
+                    showOn: "always",
+                    name: {
+                        offsetY: -11,
                         show: true,
-                        background: "#e9ecef",
-                        strokeWidth: '100%',
-                        opacity: 1,
-                        margin: 5,
+                        color: "#6c757d",
+                        fontSize: "13px"
                     },
-                    dataLabels: {
-                        showOn: "always",
-                        name: {
-                            offsetY: -11,
-                            show: true,
-                            color: "#6c757d",
-                            fontSize: "13px"
-                        },
-                        value: {
-                            color: "#343a40",
-                            fontSize: "30px",
-                            show: true
-                        }
+                    value: {
+                        color: "#343a40",
+                        fontSize: "30px",
+                        show: true
                     }
                 }
-            },
-            fill: {
-                opacity: 1
-            },
-            stroke: {
-                lineCap: "round",
-            },
-            labels: ["İlerleme"]
-        };
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        stroke: {
+            lineCap: "round",
+        },
+        labels: ["İlerleme"]
+    };
 
-        // Her bir kartın içindeki grafik öğesine grafik ekleyin
-        var chart = new ApexCharts(element, options);
-        chart.render();
-    });
+    // Her bir kartın içindeki grafik öğesine grafik ekleyin
+    var chart = new ApexCharts(element, options);
+    chart.render();
+});
 
 function addPayment(id){
   var modal = document.createElement('div');
@@ -491,19 +491,19 @@ function extendTime(id){
     title : 'Proje Süresi Uzat',
     footer: false,
     content : `<div class="d-flex justify-content-between mb-3">
-                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(3600, ${id})">1 Saat</button>
-                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(21600, ${id})">6 Saat</button>
-                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(43200, ${id})">12 Saat</button>
-                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(86400, ${id})">1 Gün</button>
-                <button class="btn btn-secondary timeBtn" onclick="addWorkTime(604800, ${id})">7 Gün</button>
+                <button class="btn btn-secondary extendTimeBtn" onclick="extendWorkTime(3600, ${id})">1 Saat</button>
+                <button class="btn btn-secondary extendTimeBtn" onclick="extendWorkTime(21600, ${id})">6 Saat</button>
+                <button class="btn btn-secondary extendTimeBtn" onclick="extendWorkTime(43200, ${id})">12 Saat</button>
+                <button class="btn btn-secondary extendTimeBtn" onclick="extendWorkTime(86400, ${id})">1 Gün</button>
+                <button class="btn btn-secondary extendTimeBtn" onclick="extendWorkTime(604800, ${id})">7 Gün</button>
               </div>`
 
   });
   modal.fire();
 }
-function addWorkTime(time, id){
-  $(".timeBtn").attr("disabled", true);
-  axios.post('/project/add-work-time', {time:time, id:id}).then((res)=>{
+function extendWorkTime(time, id){
+  $(".extendTimeBtn").attr("disabled", true);
+  axios.post('/project/extend-work-time', {time:time, id:id}).then((res)=>{
     toastr[res.data.type](res.data.message);
     if(res.data.status){
       window.location.reload();

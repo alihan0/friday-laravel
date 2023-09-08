@@ -64,7 +64,7 @@ class ProjectController extends Controller
     }
 
     public function detail($id){
-        return view('project.detail', ["project" => Project::find($id), 'payments' => Payment::where('project', $id)->orderBy('id', 'desc')->get()]);
+        return view('project.detail', ["project" => Project::find($id), 'payments' => Payment::where('project', $id)->orderBy('id', 'desc')->get(), 'tasks' => Task::where('project', $id)->orderBy('id','desc')->get()]);
     }
 
     public function all(){
@@ -140,10 +140,18 @@ class ProjectController extends Controller
             }else{
                 $task = Task::create([
                     "user" => Auth::user()->id,
-                    "project" => $request,
+                    "project" => $request->id,
                     "task" => $request->task,
                     "status" => 1
                 ]);
+
+                if($task){
+                    $this->type = "success";
+                    $this->message = "Görev oluşturuldu";
+                    $this->status = true;
+                }else{
+                    $this->message = "Görev oluşturulurken bir hata oluştu";
+                }
             }
         }
 

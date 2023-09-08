@@ -53,6 +53,38 @@
         
         <div class="row mb-4">
           <div class="card card-body">
+            <h4 class="card-title border-bottom pb-3">Görevler</h4>
+            
+            @if ($tasks->count() > 0)
+            <table class="table ">
+              
+              <tbody>
+                
+                @foreach ($tasks as $task)
+                    <tr>
+                      <td><span>{{$task->task}}</span></td>
+                      <td class="d-flex justify-content-end">
+                        <button class="btn  btn-sm p-0 m-0" ><i class="icon-sm" data-feather="check"></i></button>
+                        <button class="btn  btn-sm p-0 m-0"><i class="icon-sm" data-feather="x"></i></button>
+                      </td>
+                    </tr>
+                @endforeach
+                
+              </tbody>
+            </table>
+            @else
+            <div class="px-4 pt-4 my-5 text-center">
+              <h1 class="display-5 fw-bold text-body-emphasis">Görev Bulunamadı</h1>
+              <div class="col-12 mx-auto">
+                <p class="lead mb-4">Bu proje için henüz bir görev bulunamadı. Eğer görev eklemek istiyorsanız aksiyon menüsünden <code>Görev Ekle</code> butonunu kullanarak yeni görev ekleyebilirsiniz.</p>
+              </div>
+            </div>
+            @endif
+
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="card card-body">
             <h4 class="card-title border-bottom pb-3">Ödemeler</h4>
             
             @if ($payments->count() > 0)
@@ -72,7 +104,7 @@
                       <td>{{$payment->id}}</td>
                       <td>{{$payment->amount}} ₺</td>
                       <td>{{$payment->detail}} </td>
-                      <td>
+                      <td class="d-flex justify-content-end">
                         <button class="btn btn-danger btn-sm p-1 m-0" onclick="removePayment({{$payment->id}})"><i class="icon-sm" data-feather="trash"></i></button>
                       </td>
                     </tr>
@@ -92,17 +124,7 @@
           </div>
         </div>
 
-        <div class="row mb-4">
-          <div class="card card-body">
-            <h4 class="card-title border-bottom pb-3">Görevler</h4>
-            <div class="px-4 pt-4 my-5 text-center">
-              <h1 class="display-5 fw-bold text-body-emphasis">Ödeme Bulunamadı</h1>
-              <div class="col-12 mx-auto">
-                <p class="lead mb-4">Bu proje için henüz bir görev bulunamadı. Eğer görev eklemek isterseniz aksiyon menüsünden <code>Görev Ekle</code> butonunu kullanarak yeni görev tanımlayabilirsiniz.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
         <div class="row mb-4">
           <div class="card card-body">

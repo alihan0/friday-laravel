@@ -62,4 +62,5 @@ Route::controller(CustomerController::class)->prefix('customer')->middleware('au
 Route::controller(OfferController::class)->prefix('offer')->middleware('auth')->group(function(){
     Route::get('/new', 'new');
     Route::post('/save', 'save');
+    Route::get('/all', 'all');
 });

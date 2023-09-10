@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Offer extends Model
 {
@@ -17,4 +18,11 @@ class Offer extends Model
         "detail",
         "status"
     ];
+
+    public function Customer(){
+        return $this->hasOne(Customer::class, 'id', 'customer');
+    }
+
+   
+
 }

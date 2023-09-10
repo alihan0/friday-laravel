@@ -1,4 +1,6 @@
 <?php
+use App\Models\Offer;
+use Illuminate\Support\Carbon;
 
 if (!function_exists('formatSeconds')) {
     function formatSeconds($seconds) {
@@ -17,5 +19,33 @@ if (!function_exists('formatSeconds')) {
         }
     
         return $result;
+    }
+}
+
+if(!function_exists('offerDuration')){
+    function offerDuration($offerId){
+        $offer = Offer::find($offerId);
+
+        if (!$offer) {
+            return false;
+        }
+
+        $time = $offer->validity_time;
+        $thisdate = Carbon::now();
+        $startdate = Carbon::parse($offer->created_at);
+        $enddate = $startdate->addDays($time);
+        $duration = $enddate->diffInDays($thisdate);
+
+        if ($duration < 1) {
+            if($offer->status == 1){
+                $offer->status = 0;
+                $offer->reason = "Sistem İptali (Zaman Aşımı).";
+                $offer->save();
+            }
+            
+            return '<span class="badge text-bg-danger">Süre Doldu</span>';
+        }
+
+        return '<span class="badge text-bg-primary">' . $duration. ' Gün</span>';
     }
 }

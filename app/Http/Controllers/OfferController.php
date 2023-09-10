@@ -65,4 +65,8 @@ class OfferController extends Controller
     public function all(){
         return view('offer.all', ['offers' => Offer::orderBy('id','desc')->get()]);
     }
+
+    public function wait(){
+        return view('offer.wait', ['offers' => Offer::where('status',1)->orderBy('id','desc')->get()]);
+    }
 }

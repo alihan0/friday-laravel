@@ -71,6 +71,12 @@ class OfferController extends Controller
     }
 
     public function detail($id){
-        return view('offer.detail', ['offer' => Offer::find($id)]);
+        $offer = Offer::find($id);
+        $backend = explode(',', $offer->backend);
+        $frontend = explode(',', $offer->frontend);
+        $db = explode(',', $offer->db);
+        $security = explode(',', $offer->security);
+        
+        return view('offer.detail', ['offer' => $offer, 'backend' => $backend, 'frontend' => $frontend, 'db' => $db, 'security' => $security]);
     }
 }

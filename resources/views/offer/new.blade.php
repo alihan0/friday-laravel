@@ -66,7 +66,7 @@
                         <select class="selectform form-select" id="backend"  multiple="multiple" data-width="100%">
                             @if ($techs->count() > 0)
                                 @foreach ($techs as $tech)
-                                    <option value="{{ $tech->id }}">{{$tech->title}}</option>
+                                    <option value="{{ $tech->title }}">{{$tech->title}}</option>
                                 @endforeach
                                 
                             @endif
@@ -78,7 +78,7 @@
                         <select class="selectform form-select" id="frontend"  multiple="multiple" data-width="100%">
                             @if ($techs->count() > 0)
                                 @foreach ($techs as $tech)
-                                    <option value="{{ $tech->id }}">{{$tech->title}}</option>
+                                    <option value="{{ $tech->title }}">{{$tech->title}}</option>
                                 @endforeach
                                 
                             @endif
@@ -89,7 +89,7 @@
                         <select class="selectform form-select" id="db"  multiple="multiple" data-width="100%">
                             @if ($techs->count() > 0)
                                 @foreach ($techs as $tech)
-                                    <option value="{{ $tech->id }}">{{$tech->title}}</option>
+                                    <option value="{{ $tech->title }}">{{$tech->title}}</option>
                                 @endforeach
                                 
                             @endif
@@ -100,7 +100,7 @@
                         <select class="selectform form-select" id="security"multiple="multiple" data-width="100%">
                             @if ($techs->count() > 0)
                                 @foreach ($techs as $tech)
-                                    <option value="{{ $tech->id }}">{{$tech->title}}</option>
+                                    <option value="{{ $tech->title }}">{{$tech->title}}</option>
                                 @endforeach
                                 
                             @endif

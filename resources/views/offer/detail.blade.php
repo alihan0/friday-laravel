@@ -48,6 +48,64 @@
       </div>
     </div>
   </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="border-bottom mb-3 pb-3">3 - Proje Teknik Özellikleri</h4>
+            {!! $offer->panels !!}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="border-bottom mb-3 pb-3">4 - Teknoloji Yığınları</h4>
+            
+
+          <div class="row">
+            <div class="col-3">
+              <ul class="list-group">
+                <li class="list-group-item active" style="font-size:1.3rem">Front-end (Ön Uç)</li>
+                @foreach ($frontend as $item)
+                  <li class="list-group-item">{{$item}}</li>
+                @endforeach
+              </ul>
+            </div>
+            <div class="col-3">
+              <ul class="list-group">
+                <li class="list-group-item active" style="font-size:1.3rem">Back-end (Arka Uç)</li>
+                @foreach ($backend as $item)
+                  <li class="list-group-item">{{$item}}</li>
+                @endforeach
+              </ul>
+            </div>
+            <div class="col-3">
+              <ul class="list-group">
+                <li class="list-group-item active" style="font-size:1.3rem">Veritabanı</li>
+                @foreach ($db as $item)
+                  <li class="list-group-item">{{$item}}</li>
+                @endforeach
+              </ul>
+            </div>
+            <div class="col-3">
+              <ul class="list-group">
+                <li class="list-group-item active" style="font-size:1.3rem">Güvenlik</li>
+                @foreach ($security as $item)
+                  <li class="list-group-item">{{$item}}</li>
+                @endforeach
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 @endsection

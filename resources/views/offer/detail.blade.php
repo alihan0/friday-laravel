@@ -68,36 +68,51 @@
             
 
           <div class="row">
-            <div class="col-3">
-              <ul class="list-group">
+            <div class="col-4">
+              <ul class="list-group mb-3">
                 <li class="list-group-item active" style="font-size:1.3rem">Front-end (Ön Uç)</li>
                 @foreach ($frontend as $item)
                   <li class="list-group-item">{{$item}}</li>
                 @endforeach
               </ul>
             </div>
-            <div class="col-3">
-              <ul class="list-group">
+            <div class="col-4">
+              <ul class="list-group mb-3">
                 <li class="list-group-item active" style="font-size:1.3rem">Back-end (Arka Uç)</li>
                 @foreach ($backend as $item)
                   <li class="list-group-item">{{$item}}</li>
                 @endforeach
               </ul>
             </div>
-            <div class="col-3">
-              <ul class="list-group">
+            <div class="col-4">
+              <ul class="list-group mb-3">
                 <li class="list-group-item active" style="font-size:1.3rem">Veritabanı</li>
                 @foreach ($db as $item)
                   <li class="list-group-item">{{$item}}</li>
                 @endforeach
               </ul>
             </div>
-            <div class="col-3">
-              <ul class="list-group">
+            <div class="col-4">
+              <ul class="list-group mb-3">
                 <li class="list-group-item active" style="font-size:1.3rem">Güvenlik</li>
                 @foreach ($security as $item)
                   <li class="list-group-item">{{$item}}</li>
                 @endforeach
+              </ul>
+            </div>
+            <div class="col-4">
+              <ul class="list-group mb-3">
+                <li class="list-group-item active" style="font-size:1.3rem">API & Bağlantılar</li>
+                <li class="list-group-item">CURL</li>
+                <li class="list-group-item">Axios</li>
+                <li class="list-group-item">Ajax</li>
+              </ul>
+            </div>
+            <div class="col-4">
+              <ul class="list-group mb-3">
+                <li class="list-group-item active" style="font-size:1.3rem">Versiyon Kontrol</li>
+                <li class="list-group-item">Git</li>
+                <li class="list-group-item">GitHub</li>
               </ul>
             </div>
           </div>

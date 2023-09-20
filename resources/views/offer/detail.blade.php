@@ -8,142 +8,56 @@
 @endsection
 
 @section('content')
-<div id="print-area">
-    <style>
-
-        .page-header, .page-header-space {
-          height: 100px;
-        }
-        
-        .page-footer, .page-footer-space {
-          height: 50px;
-        
-        }
-        
-        .page-footer {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          border-top: 1px solid black; /* for demo */
-          background: yellow; /* for demo */
-        }
-        
-        .page-header {
-          position: fixed;
-          top: 0mm;
-          width: 100%;
-          border-bottom: 1px solid black; /* for demo */
-          background: url('/static/assets/images/footer.png');
-        }
-        
-        .page {
-          page-break-after: always;
-        }
-        
-        @page {
-          margin: 20mm
-        }
-        
-        @media print {
-           thead {display: table-header-group;} 
-           tfoot {display: table-footer-group;}
-           
-           button {display: none;}
-           
-           body {margin: 0;}
-        }
-        </style>
-<div class="page-header">
-    I'm The Header
-    <br/>
-    
+<div class="row mb-4">
+  <div class="col">
+      <h4 class="card-title border-bottom pb-3 mb-3">{{$offer->title}}</h4>
   </div>
 
-  <div class="page-footer">
-    I'm The Footer
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="border-bottom mb-3 pb-3">1 - Giriş</h4>
+
+          <p class="text-muted mb-3">
+            İşbu proje teklif dosyası <b>{{$offer->Customer->name}}</b> için özel olarak oluşturulmuştur. Proje kapsamında ortaya çıkacak olan tüm <b>çıktı</b>lar tarafına ait olup, herhangi bir sebeple izinsiz kopyalanmayacak, ücretli olarak satılmayacak ya da ücretsiz olarak dağıtılmayacaktır. İşbu çıktıların tamamı <b>{{$offer->Customer->name}}</b>'nın şahsına ait olup, üretildiği andan itibaren yayınlanması, dağıtılması ve/veya telif haklarının korunması kendi sorumluluğundadır.
+          </p>
+          <p class="text-muted mb-3">
+            İşbu proje teklif dosyası, yüksek gizlilik korumasındadır ve hiçbir şekilde üçüncü şahıslarla, kişi ve kurumlarla paylaşılamaz. Teklif dosyasının içeriği özel proje detayları içerdiğinden dolayı dosyanın paylaşılması halinde fikri hakların ihlaline sebep olunabilir. Bu durumda sorumluluk dosyayı paylaşan kişiye aittir.
+          </p>
+          <p class="text-muted mb-3">
+            <b>{{$offer->Customer->name}}</b>, teknik alanda danışmanlık aldığı kişi ve kurumlar ile işbu teklif dosyasını inceleyebilir ve değerlendirebilir. Bu değerlendirlemeler sonucunda oluşabilecek bilgi güvenliğinden kendisi sorumludur.
+          </p>
+          <hr>
+          <p class="text-muted mb-3">
+            <b>Çıktı:</b> İşbu proje kapsamında isteğe özel olarak üretilecek olan yazılım, tasarım, görsel, video, yazı algoritma vb. tüm görsel, işitsel ve yazılımsal materyalların tamamı.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <table>
-
-    <thead>
-      <tr>
-        <td>
-          <!--place holder for the fixed-position header-->
-          <div class="page-header-space"></div>
-        </td>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          <!--*** CONTENT GOES HERE ***-->
-          <div class="page">PAGE 1</div>
-          <div class="page">PAGE 2</div>
-          <div class="page" style="line-height: 3;">
-            PAGE 3 - Long Content
-            <br/> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tincidunt metus eu consectetur rutrum. Praesent tempor facilisis dapibus. Aliquam cursus diam ac vehicula pulvinar. Integer lacinia non odio et condimentum. Aenean faucibus cursus
-            mi, sed interdum turpis sagittis a. Quisque quis pellentesque mi. Ut erat eros, posuere sed scelerisque ut, pharetra vitae tellus. Suspendisse ligula sapien, laoreet ac hendrerit sit amet, viverra vel mi. Pellentesque faucibus nisl et dolor
-            pharetra, vel mattis massa venenatis. Integer congue condimentum nisi, sed tincidunt velit tincidunt non. Nulla sagittis sed lorem pretium aliquam. Praesent consectetur volutpat nibh, quis pulvinar est volutpat id. Cras maximus odio posuere
-            suscipit venenatis. Donec rhoncus scelerisque metus, in tempus erat rhoncus sed. Morbi massa sapien, porttitor id urna vel, volutpat blandit velit. Cras sit amet sem eros. Quisque commodo facilisis tristique. Proin pellentesque sodales rutrum.
-            Vestibulum purus neque, congue vel dapibus in, venenatis ut felis. Donec et ligula enim. Sed sapien sapien, tincidunt vitae lectus quis, ultricies rhoncus mi. Nunc dapibus nulla tempus nunc interdum, sed facilisis ex pellentesque. Nunc vel
-            lorem leo. Cras pharetra sodales metus. Cras lacus ex, consequat at consequat vel, laoreet ac dui. Curabitur aliquam, sapien quis congue feugiat, nisi nisl feugiat diam, sed vehicula velit nulla ac nisl. Aliquam quis nisi euismod massa blandit
-            pharetra nec eget nunc. Etiam eros ante, auctor sit amet quam vel, fringilla faucibus leo. Morbi a pulvinar nulla. Praesent sed vulputate nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean commodo
-            mollis iaculis. Maecenas consectetur enim vitae mollis venenatis. Ut scelerisque pretium orci id laoreet. In sit amet pharetra diam. Vestibulum in molestie lorem. Nunc gravida, eros non consequat fermentum, ex orci vestibulum orci, non accumsan
-            sem velit ac lectus. Vivamus malesuada lacus nec velit dignissim, ac fermentum nulla pretium. Aenean mi nisi, convallis sed tempor in, porttitor eu libero. Praesent et molestie ante. Duis suscipit vitae purus sit amet aliquam. Vestibulum lectus
-            justo, lobortis a purus a, dapibus efficitur metus. Suspendisse potenti. Duis dictum ex lorem. Suspendisse nec ligula consectetur magna hendrerit ullamcorper et eget mauris. Etiam vestibulum sodales diam, eget venenatis nunc luctus quis. Ut
-            fermentum placerat neque nec elementum. Praesent orci erat, rhoncus vitae est eu, dictum molestie metus. Cras et fermentum elit. Aenean eget augue lacinia, varius ante in, ullamcorper dolor. Cras viverra purus non egestas consectetur. Nulla
-            nec dolor ac lectus convallis aliquet sed a metus. Suspendisse eu imperdiet nunc, id pulvinar risus. Maecenas varius sagittis est, vel fermentum risus accumsan at. Vestibulum sollicitudin dui pharetra sapien volutpat, id convallis mi vestibulum.
-            Phasellus commodo sit amet lorem quis imperdiet. Proin nec diam sed urna euismod ultricies at sed urna. Quisque ornare, nulla et vehicula ultrices, massa purus vehicula urna, ac sodales lacus leo vitae mi. Sed congue placerat justo at placerat.
-            Aenean suscipit fringilla vehicula. Quisque iaculis orci vitae arcu commodo maximus. Maecenas nec nunc rutrum, cursus elit quis, porttitor sapien. Sed ac hendrerit ipsum, lacinia fringilla velit. Donec ultricies feugiat dictum.
-          </div>
-        </td>
-      </tr>
-    </tbody>
-
-    <tfoot>
-      <tr>
-        <td>
-          <!--place holder for the fixed-position footer-->
-          <div class="page-footer-space"></div>
-        </td>
-      </tr>
-    </tfoot>
-
-  </table>
-
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="border-bottom mb-3 pb-3">2 - Proje Detayları</h4>
+            {!! $offer->detail !!}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<button type="button" onClick="printpage('print-area')" style="background: pink">
-    PRINT ME!
-  </button>
+
 @endsection
 
 
 @section('script')
-<script src="  https://printjs-4de6.kxcdn.com/print.min.js"></script>
-<script>function printpage(divID) {
-    var printContents = document.getElementById(divID).innerHTML;
-    var originalContents = document.body.innerHTML;
 
-    var printWindow = window.open('', '', 'width=600,height=600');
-    printWindow.document.write('<html><head><title>Yazdır</title>');
+<script>
 
-    // Stilleri burada ekliyoruz
-    var styles = document.getElementsByTagName('link');
-    for (var i = 0; i < styles.length; i++) {
-        printWindow.document.write(styles[i].outerHTML);
-    }
 
-    printWindow.document.write('</head><body>');
-    printWindow.document.write(printContents);
-    printWindow.document.write('</body></html>');
-
-    // İçeriği eklemeden önce biraz bekliyoruz
-    setTimeout(function() {
-        printWindow.document.close();
-        printWindow.print();
-        printWindow.close();
-    }, 1000); // 1000 milisaniye bekliyoruz, gerektiğinde bu süreyi ayarlayabilirsiniz
-}
 </script>
+
 @endsection

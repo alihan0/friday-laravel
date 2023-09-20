@@ -64,4 +64,5 @@ Route::controller(OfferController::class)->prefix('offer')->middleware('auth')->
     Route::post('/save', 'save');
     Route::get('/all', 'all');
     Route::get('/wait', 'wait');
+    Route::get('/detail/{id}', 'detail');
 });

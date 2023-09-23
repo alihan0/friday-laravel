@@ -8,10 +8,14 @@
 @endsection
 
 @section('content')
-<div class="row mb-4">
-  <div class="col">
-      <h4 class="card-title border-bottom pb-3 mb-3">{{$offer->title}}</h4>
-  </div>
+
+<div class="row" id="print">
+  
+  <div class="col text-center">
+    <img src="{{$system->logo}}" class="mx-auto" alt="{{$system->company_name}}" width="200px">
+    <h2 class="card-title border-bottom pb-3 mb-3">{{$offer->title}}</h2>
+</div>
+
 
 
   <div class="row mb-4">
@@ -300,12 +304,21 @@
 
 </div>
 
+<div class="row">
+  <div class="col d-flex justify-content-end">
+    <button type="button" class="btn btn-primary" id="printPDF"><i data-feather="printer"></i></button>
+  </div>
+</div>
 @endsection
 
 
 @section('script')
 
 <script>
+
+$("#printPDF").on("click", function(){
+  $("#print").print();
+});
 
 
 </script>

@@ -142,12 +142,10 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h4 class="border-bottom mb-3 pb-3">4 - Proje Yayınlama</h4>
-            <p class="text-muted mb-4">
-              İşbu projenin yayınlanması ve aktif olarak kullanılması için sunucu kullanımı gerekmektedir. Sunucular, herhangi bir servis sağlayıcan alınacak olan <b>VPS</b>, <b>VDS</b> ya da <b>Dedicated Sunucular</b> olabilir fakat <b>Google Cloud</b>, <b>Amazon AWS</b>, <b>Alibaba Cloud</b>, <b>Digital Ocean</b> gibi uluslararası ölçeklenebilir bulut sunucu hizmeti veren firmalardan alınması tavsiye edilir. Alınması gereken sunucun özellikleri aşağıdaki gibi olmalıdır.
-            </p>
+          <h4 class="border-bottom mb-3 pb-3">4 - Sistem Gereksinimleri</h4>
+            
 
-            <div class="row mb-4">
+            <div class="row">
               <div class="col-6">
                 <ul class="list-group mb-3">
                   <li class="list-group-item active" style="font-size:1rem">Minimum Sistem Özellikleri</li>
@@ -172,22 +170,38 @@
               </div>
             </div>
 
-            <p class="text-muted mb-3">
-              Konfigüre edilen sunuu özellikler yukarıdaki gibidir. Sorunssuz kurulum sağlanabilmesi için teslim sürecinde <code>Hosting Kontrol Paneli</code> ve <code>SSH Kullanıcısı</code> bilgilerinizi iletmiş olmanız gerekmektedir. Bu bilgilerin sağlanamaması durumunda sunucu kurulumu tamamlanamaz/yapılamaz. Tercih edilen sunucunun <code>Dikey Ölçeklenebilirliği</code> projenizin geleceği açaısından önemlidir. İstenildiği zaman sunucunun cpu, ram ve disk kapasitelerini artırabiliyor olmanız sağlıklı bir proje için elzemdir. Çok fazla dosya/resim yükleme işlemi yapılmadığı durumlarda <code>100 GB SSD</code> disk, proje için fazlasıyla büyük bir alandır ve virüs bulaşmadığı sürece dolmasını beklemeyiz. Bu disk alanına birden fazla proje kurmanız da mümkün olacak ve sorun çıkmayacaktır. Yine de gerektiği durumlarda ram ve cpu'nun artırılma ihtiyacı olabilir.
-            </p>
-            <p class="text-muted mb-3">
-              Sunucuda <code>Cpanel</code>, <code>DirectAdmin</code>, <code>Plesk Panel</code> ya da <code>Cyber Panel</code> gibi hosting kontrol panellerinden herhangi birini kullanabilirsiniz. Bu kontrol yazılımları arasında <code>Cpanel</code> ya da <code>DirectAdmin</code> kullanmanız, kolay yönetilebilirlik açısından tavsiye ettiğimiz kontrol yazılımlarıdır. Burada dikkat etmeniz gereken konu ise, kontrol yazılımlarının lisanslarıdır. Sunucuda barındıracağınız websitesi ya da proje sayısında göre bir lisans temin etmeli ya da ücretsiz bir panel kullanmalısınız. Ücretsiz kontrol yazılımı ya da illegal lisans kullanımında oluşuabilecek olumsuzluklardan kendiniz sorumlu olacaksınız. 
-            </p>
-            <p class="text-muted mb-3">
-              Hazırlancak sistemde size sadece yazılım tarafında güvenlik sağlayacağımızı unutmayın, sunucu tarafındaki güvenlikten siz sorumlusunuz ve oluşabilecek güvenlik açıklarından ya da saldırılardan sunucunuzu korumanız gerekmektedir. Bu tür güvenlik açıklarından dolayı olabilecek yazılımsal problemler için destek verememekteyiz.
-            </p>
-            <p class="text-muted mb-3">
-              Barındırma sunucusu olarak <code>Paylaşımlı Hosting (Shared Hosting)</code> kullanamazsınız. Geliştirdiğimiz projeler kompleks sistemlerdir ve yoğun güç gereksinimleri vardır. Aynı zamanda terminal komutlarına erişim gerekmektedir. Paylaşımlı hostinglerde aynı makinede binlerce web sitesi barındırıldığından dolayı proje için yeterli kaynak ayrılması mümkün değildir ve termial erişiminiz bulunmaz. Bu yüzden paylaşımlı hostinglere kurulum yapmamaktayız. Eğer bize teslim ettiğiniz bilgiler bir paylaşımlı hostinge ait ise, kurulum tamamlanmayacak ve iptal edilecektir. Projeyi paylaşımlı hostinge kendiniz kurmanız ve/veya kurdurmanız durumunda ücretsiz teknik destek hakkınızı kaybedersiniz ve proje için yardım ve güncelleme alamazsınız.
-            </p>
+            
         </div>
       </div>
     </div>
   </div>
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="border-bottom mb-3 pb-3">4.1 - Proje Yayınlama</h4>
+          <p class="text-muted mb-4">
+            İşbu projenin yayınlanması ve aktif olarak kullanılması için sunucu kullanımı gerekmektedir. Sunucular, herhangi bir servis sağlayıcan alınacak olan <b>VPS</b>, <b>VDS</b> ya da <b>Dedicated Sunucular</b> olabilir fakat <b>Google Cloud</b>, <b>Amazon AWS</b>, <b>Alibaba Cloud</b>, <b>Digital Ocean</b> gibi uluslararası ölçeklenebilir bulut sunucu hizmeti veren firmalardan alınması tavsiye edilir. Alınması gereken sunucun özellikleri aşağıdaki gibi olmalıdır.
+          </p>
+          <p class="text-muted mb-3">
+            Konfigüre edilen sunuu özellikler yukarıdaki gibidir. Sorunssuz kurulum sağlanabilmesi için teslim sürecinde <code>Hosting Kontrol Paneli</code> ve <code>SSH Kullanıcısı</code> bilgilerinizi iletmiş olmanız gerekmektedir. Bu bilgilerin sağlanamaması durumunda sunucu kurulumu tamamlanamaz/yapılamaz. Tercih edilen sunucunun <code>Dikey Ölçeklenebilirliği</code> projenizin geleceği açaısından önemlidir. İstenildiği zaman sunucunun cpu, ram ve disk kapasitelerini artırabiliyor olmanız sağlıklı bir proje için elzemdir. Çok fazla dosya/resim yükleme işlemi yapılmadığı durumlarda <code>100 GB SSD</code> disk, proje için fazlasıyla büyük bir alandır ve virüs bulaşmadığı sürece dolmasını beklemeyiz. Bu disk alanına birden fazla proje kurmanız da mümkün olacak ve sorun çıkmayacaktır. Yine de gerektiği durumlarda ram ve cpu'nun artırılma ihtiyacı olabilir.
+          </p>
+          <p class="text-muted mb-3">
+            Sunucuda <code>Cpanel</code>, <code>DirectAdmin</code>, <code>Plesk Panel</code> ya da <code>Cyber Panel</code> gibi hosting kontrol panellerinden herhangi birini kullanabilirsiniz. Bu kontrol yazılımları arasında <code>Cpanel</code> ya da <code>DirectAdmin</code> kullanmanız, kolay yönetilebilirlik açısından tavsiye ettiğimiz kontrol yazılımlarıdır. Burada dikkat etmeniz gereken konu ise, kontrol yazılımlarının lisanslarıdır. Sunucuda barındıracağınız websitesi ya da proje sayısında göre bir lisans temin etmeli ya da ücretsiz bir panel kullanmalısınız. Ücretsiz kontrol yazılımı ya da illegal lisans kullanımında oluşuabilecek olumsuzluklardan kendiniz sorumlu olacaksınız. 
+          </p>
+          <p class="text-muted mb-3">
+            Hazırlancak sistemde size sadece yazılım tarafında güvenlik sağlayacağımızı unutmayın, sunucu tarafındaki güvenlikten siz sorumlusunuz ve oluşabilecek güvenlik açıklarından ya da saldırılardan sunucunuzu korumanız gerekmektedir. Bu tür güvenlik açıklarından dolayı olabilecek yazılımsal problemler için destek verememekteyiz.
+          </p>
+          <p class="text-muted mb-3">
+            Barındırma sunucusu olarak <code>Paylaşımlı Hosting (Shared Hosting)</code> kullanamazsınız. Geliştirdiğimiz projeler kompleks sistemlerdir ve yoğun güç gereksinimleri vardır. Aynı zamanda terminal komutlarına erişim gerekmektedir. Paylaşımlı hostinglerde aynı makinede binlerce web sitesi barındırıldığından dolayı proje için yeterli kaynak ayrılması mümkün değildir ve termial erişiminiz bulunmaz. Bu yüzden paylaşımlı hostinglere kurulum yapmamaktayız. Eğer bize teslim ettiğiniz bilgiler bir paylaşımlı hostinge ait ise, kurulum tamamlanmayacak ve iptal edilecektir. Projeyi paylaşımlı hostinge kendiniz kurmanız ve/veya kurdurmanız durumunda ücretsiz teknik destek hakkınızı kaybedersiniz ve proje için yardım ve güncelleme alamazsınız.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
 
   <div class="row mb-4">
     <div class="col">
@@ -222,6 +236,16 @@
             <p class="text-muted mb-3">
               Ücretsiz teknik destek hakkınız kapsamında, projenizin ham dosyaları ve alınan yedekler taramızca 5 yıla kadar saklanır. Dosyalar saklandığı sürece istediğiniz zaman talep edebilirsiniz ve bunun ekstra ücret ödemezsiniz. Ücretsiz teknik destek hakkınız bittikten sonra yedek alma talepleriniz ek ücrete tabi olacaktır. Kendi aldığınız yedekleri ücretsiz teknik destek hakkınızın kapsamı dışıda kurulum talep edebilirsiniz. Yedekleme formatınız doğru olduğu sürece ücreti mukabilinde kurulum yaptırabilirsiniz.
             </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="border-bottom mb-3 pb-3">6.1 - Proje Lisansı</h4>
             <p class="text-muted mb-3">
               Geliştirilen proje 1 (bir) alan adı ile sınırlıdır ve belirttiğiniz alan adına lisanslanır. Bu lisansı dilediğiniz zaman değiştirmeyi talep edebilir ve farklı bir alan adı ve/veya sunucuya kurulum sağlayabilirsiniz fakat sistem aynı anda sadece 1 alan adında yayında kalabilir. Test sunucuları haricinde aynı projeyi birden fazla kopya ile kullanmanıza izin verilemeyecektir ve böyle bir kurulum talebinde bulunamazınız. Projenin tüm telif hakları size ait olduğundan dolayı projeyi istediğiniz kadar kopyalabilir ve kurulumunu kendiniz gerçekleştirebilirsiniz. Bunun için herhangi bir şekilde yazılıma müdehale etmiyoruz ya da kontrol etmiyoruz fakat bunun tespiti halinde tüm ücretsiz haklarınız ve garantileriniz sonlanır. Kopya kullanımından dolayı yaşanabilecek herhangi bir sorundan ya da yasal yükümlülükten bizi sorumlu tutamazsınız ya da destek talep edemezsiniz.
             </p>
@@ -237,7 +261,7 @@
             <p class="text-muted mb-3">
               İşbu teklif dosyasında detayları belirtilen proje aşağıdaki süre ve fiyatlandırma kapsamında geçerliliğini korumaktadır. Burada belirtilen sürelerin tahmini süreler olduğunu unutmayın. Bu sürelere ek olarak 15 (on beş) iş günü <code>Test Süresi</code> ve 15 (on beş) iş günü <code>Teslim Süresi</code> eklenebilir. Burada belirtilen süreler, işbu dokümanda detayları belirtilen yazılım projesi içindir ve bu sürelere kurulum süreleri dahil değildir.
             </p>
-            <ul class="list-group mb-3 col-4">
+            <ul class="list-group mb-3 col-6">
               
               <li class="list-group-item d-flex justify-content-between"><b>Proje Süresi</b> {{$offer->project_time}} Gün</li>
               <li class="list-group-item d-flex justify-content-between"><b>Tahmini Teslim Tarihi:</b> {{$offer->delivery_date}}</li>
@@ -264,6 +288,16 @@
             <p class="text-muted mb-3">
               İşbu proje, tamamlandıktan sonra GitHub üzerinden teslim edilecektir. Bilgileri sağlanan sunucuya kurulumu tamamlandıktan sonra <code>Proje Dosyaları</code> ve <code>Geliştirme Dokümanı</code> ile birlikte teslim edilecektir. Bu geliştirme dokümanı projenin geliştirilmesine devam edebilmek için gerekli olan tüm referanslar yer almaktadır ve projeyi geliştirmeye devam edecek olan geliştiricinin niteliklerini belirtir. Bu niteliklere sahip herhangi bir geliştirici ile çalışarak projeyi geliştirmeye devam edebilirsiniz (bunun garanti kapsamını sonlandıracağını unutmayın).
             </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="border-bottom mb-3 pb-3">8.1 - Teslim Şartları</h4>
             <p class="text-dark mb-3"><b>İşbu teklif dosyası, aynı zamanda projenin garanti belgesi niteliğindedir.</b></p>
             <p class="text-dark mb-3"><b>İşbu teklif dosyası, {{$offer->validity_time}} iş günü için geçerli olup, {{$offer->Customer->name}} adına özel olarak düzenlenmiştir. Üçüncü şahıslarla paylaşılamaz ve/veya devredilemez.</b></p>
         </div>

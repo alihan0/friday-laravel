@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Offer;
+use App\Models\System;
 use App\Models\Tech;
 use Illuminate\Http\Request;
 
@@ -77,6 +78,6 @@ class OfferController extends Controller
         $db = explode(',', $offer->db);
         $security = explode(',', $offer->security);
         
-        return view('offer.detail', ['offer' => $offer, 'backend' => $backend, 'frontend' => $frontend, 'db' => $db, 'security' => $security]);
+        return view('offer.detail', ['offer' => $offer, 'backend' => $backend, 'frontend' => $frontend, 'db' => $db, 'security' => $security, 'system' => System::find(1)]);
     }
 }

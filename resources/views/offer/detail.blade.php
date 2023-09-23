@@ -251,6 +251,52 @@
     </div>
   </div>
 
+  <div class="row mb-4 ">
+    <div class="col">
+        <div class="card">
+            <div class="card-body ">
+
+                <div class="row align-items-center">
+                    <div class="col-3 text-center">
+                        <img src="{{$system->logo}}" alt="{{$system->company_name}}" width="100%">
+                    </div>
+                    <div class="col-3">
+                        <b class="align-items-center">{{$system->company_name}}</b>
+                        <p>{{$system->website ?? ""}}</p>
+                        <p>{{$system->company_phone ?? ""}}</p>
+                        <p>{{$system->company_email ?? ""}}</p>
+                    </div>
+                    <div class="col-3">
+                        <b>{{$system->contact_person}}</b>
+                        <p>{{$system->person_phone ?? ""}}</p>
+                        <p>{{$system->person_email ?? ""}}</p>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="mb-2">{!! $system->facebook ? '<img src="/static/assets/images/icons/facebook.png" alt="" width="20px"> /'.$system->facebook : '' !!}</p>
+                                <p class="mb-2">{!! $system->twitter ? '<img src="/static/assets/images/icons/twitter.png" alt="" width="20px"> /'.$system->twitter : '' !!}</p>
+                                <p class="mb-2">{!! $system->instagram ? '<img src="/static/assets/images/icons/instagram.png" alt="" width="20px"> /'.$system->instagram : '' !!}</p>
+                            </div>
+
+                            <div class="col-6">
+                                <p class="mb-2">{!! $system->linkedin ? '<img src="/static/assets/images/icons/linkedin.png" alt="" width="20px"> /'.$system->linkedin : '' !!}</p>
+                                <p class="mb-2">{!! $system->github ? '<img src="/static/assets/images/icons/github.png" alt="" width="20px"> /'.$system->github : '' !!}</p>
+                                <p class="mb-2">{!! $system->youtube ? '<img src="/static/assets/images/icons/youtube.png" alt="" width="20px"> /'.$system->youtube : '' !!}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                {{$system->company_address ?? ""}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 </div>
 

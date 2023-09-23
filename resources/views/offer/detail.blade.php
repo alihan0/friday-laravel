@@ -5,9 +5,25 @@
 @section('style')
 <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css">
 
+<style>
+  @media print {
+  body {
+    width: 21cm;
+    height: 29.7cm;
+    margin: 0 auto;
+    font-size: 12pt;
+  }
+
+  .card {
+    page-break-inside: avoid;
+  }
+}
+
+</style>
 @endsection
 
 @section('content')
+
 
 <div class="row" id="print">
   
@@ -278,17 +294,13 @@
 
                     <div class="col-3">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <p class="mb-2">{!! $system->facebook ? '<img src="/static/assets/images/icons/facebook.png" alt="" width="20px"> /'.$system->facebook : '' !!}</p>
                                 <p class="mb-2">{!! $system->twitter ? '<img src="/static/assets/images/icons/twitter.png" alt="" width="20px"> /'.$system->twitter : '' !!}</p>
                                 <p class="mb-2">{!! $system->instagram ? '<img src="/static/assets/images/icons/instagram.png" alt="" width="20px"> /'.$system->instagram : '' !!}</p>
                             </div>
 
-                            <div class="col-6">
-                                <p class="mb-2">{!! $system->linkedin ? '<img src="/static/assets/images/icons/linkedin.png" alt="" width="20px"> /'.$system->linkedin : '' !!}</p>
-                                <p class="mb-2">{!! $system->github ? '<img src="/static/assets/images/icons/github.png" alt="" width="20px"> /'.$system->github : '' !!}</p>
-                                <p class="mb-2">{!! $system->youtube ? '<img src="/static/assets/images/icons/youtube.png" alt="" width="20px"> /'.$system->youtube : '' !!}</p>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -313,7 +325,7 @@
 
 
 @section('script')
-
+<script src="https://doersguild.github.io/jQuery.print/jQuery.print.js"></script>
 <script>
 
 $("#printPDF").on("click", function(){

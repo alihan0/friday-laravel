@@ -236,6 +236,21 @@
     </div>
   </div>
 
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="border-bottom mb-3 pb-3">8 - Teslim</h4>
+            <p class="text-muted mb-3">
+              İşbu proje, tamamlandıktan sonra GitHub üzerinden teslim edilecektir. Bilgileri sağlanan sunucuya kurulumu tamamlandıktan sonra <code>Proje Dosyaları</code> ve <code>Geliştirme Dokümanı</code> ile birlikte teslim edilecektir. Bu geliştirme dokümanı projenin geliştirilmesine devam edebilmek için gerekli olan tüm referanslar yer almaktadır ve projeyi geliştirmeye devam edecek olan geliştiricinin niteliklerini belirtir. Bu niteliklere sahip herhangi bir geliştirici ile çalışarak projeyi geliştirmeye devam edebilirsiniz (bunun garanti kapsamını sonlandıracağını unutmayın).
+            </p>
+            <p class="text-dark mb-3"><b>İşbu teklif dosyası, aynı zamanda projenin garanti belgesi niteliğindedir.</b></p>
+            <p class="text-dark mb-3"><b>İşbu teklif dosyası, {{$offer->validity_time}} iş günü için geçerli olup, {{$offer->Customer->name}} adına özel olarak düzenlenmiştir. Üçüncü şahıslarla paylaşılamaz ve/veya devredilemez.</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </div>
 

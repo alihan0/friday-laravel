@@ -209,6 +209,32 @@
       </div>
     </div>
   </div>
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="border-bottom mb-3 pb-3">7 - Süre ve Fiyatlandırma</h4>
+            <p class="text-muted mb-3">
+              İşbu teklif dosyasında detayları belirtilen proje aşağıdaki süre ve fiyatlandırma kapsamında geçerliliğini korumaktadır. Burada belirtilen sürelerin tahmini süreler olduğunu unutmayın. Bu sürelere ek olarak 15 (on beş) iş günü <code>Test Süresi</code> ve 15 (on beş) iş günü <code>Teslim Süresi</code> eklenebilir. Burada belirtilen süreler, işbu dokümanda detayları belirtilen yazılım projesi içindir ve bu sürelere kurulum süreleri dahil değildir.
+            </p>
+            <ul class="list-group mb-3 col-4">
+              
+              <li class="list-group-item d-flex justify-content-between"><b>Proje Süresi</b> {{$offer->project_time}} Gün</li>
+              <li class="list-group-item d-flex justify-content-between"><b>Tahmini Teslim Tarihi:</b> {{$offer->delivery_date}}</li>
+              <li class="list-group-item d-flex justify-content-between"><b>Proje Ücreti:</b> {{$offer->project_amount}} {{$offer->currency ?? "TL"}}</li>
+              <li class="list-group-item d-flex justify-content-between"><b>Ön Ödeme Tutarı:</b> {{$offer->first_amount}} {{$offer->curreny ?? "TL"}}</li>
+              <li class="list-group-item d-flex justify-content-between"><b>Son Ödeme Tutarı:</b> {{$offer->delivery_amount}} {{$offer->currency ?? "TL"}}</li>
+            </ul>
+
+            <p>
+              <b>
+                İşbu proje teklifi {{$offer->validity_time}} iş günü için geçerlidir. Proje süresi, teklifin onaylandığı tarihten itibaren geçerlidir ve tahimini teslim tarihi bu tarihten sonra hesaplanır.
+              </b>
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </div>

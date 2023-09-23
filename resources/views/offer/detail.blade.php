@@ -351,10 +351,15 @@
 </div>
 
 <div class="row">
-  <div class="col d-flex justify-content-end">
-    <button type="button" class="btn btn-primary" id="printPDF"><i data-feather="printer"></i></button>
+  <div class="col text-end">
+    <button type="button" class="btn btn-success me-1" onclick="confirmOffer({{$offer->id}})">Teklifi Onayla</button>
+    <button type="button" class="btn btn-danger me-1" id="rejectOffer">Teklifi Reddet</button>
+    <button type="button" class="btn btn-primary" id="printPDF">
+      <i data-feather="printer"></i>
+    </button>
   </div>
 </div>
+
 @endsection
 
 
@@ -365,6 +370,7 @@
 $("#printPDF").on("click", function(){
   $("#print").print();
 });
+
 
 
 </script>

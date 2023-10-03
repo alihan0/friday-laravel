@@ -80,4 +80,26 @@ class OfferController extends Controller
         
         return view('offer.detail', ['offer' => $offer, 'backend' => $backend, 'frontend' => $frontend, 'db' => $db, 'security' => $security, 'system' => System::find(1)]);
     }
+
+    public function confirm(Request $request){
+        $offer = Offer::find($request->id);
+        if($offer){
+            if($offer->status != 3){
+                $offer->status = 3;
+                if($offer->save()){
+                    $this->type = "success";
+                    $this->message = "Teklif onaylandı.";
+                    $this->status = true;
+                }else{
+                    $this->message = "Teklif onaylanırken hata oluştu!";
+                }
+            }else{
+                $this->message = "Teklif zaten onaylanmış";
+            }
+        }else{
+            $this->message = "Offer bulunamadı";
+            $this->type = "danger";
+        }
+        return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
+    }
 }

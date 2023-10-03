@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Offer;
 use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -17,7 +19,9 @@ class MainController extends Controller
     public function dashboard(){
         return view('main.dashboard', [
             'projects' => Project::all(),
-            'offers' => Offer::all()
+            'offers' => Offer::all(),
+            'customers' => Customer::all(),
+            'tasks' => Task::all()
         ]);
     }
 

@@ -75,27 +75,6 @@
             </ul>
           </div>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#accounting" role="button" aria-expanded="false" aria-controls="accounting">
-            <i class="link-icon" data-feather="pie-chart"></i>
-            <span class="link-title">Muhasebe</span>
-            <i class="link-arrow" data-feather="chevron-down"></i>
-          </a>
-          <div class="collapse" id="accounting">
-            <ul class="nav sub-menu">
-              <li class="nav-item">
-                <a href="/accounting/new" class="nav-link">Yeni Gelir</a>
-              </li>
-              <li class="nav-item">
-                <a href="/accounting/all" class="nav-link">Yeni Gider</a>
-              </li>
-              <li class="nav-item">
-                <a href="/accounting/all" class="nav-link">Bilanço</a>
-              </li>
-            </ul>
-          </div>
-        </li>
       </ul>
     </div>
   </nav>

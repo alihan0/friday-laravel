@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offer;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -13,7 +15,10 @@ class MainController extends Controller
 
     
     public function dashboard(){
-        return view('main.dashboard');
+        return view('main.dashboard', [
+            'projects' => Project::all(),
+            'offers' => Offer::all()
+        ]);
     }
 
     public function upload(Request $request)

@@ -39,10 +39,10 @@
                             <td>{{$customer->email}}<br>{{$customer->phone}}</td>
                             <td>{{$customer->website}}</td>
                             <td>{{$customer->country}}</td>
-                            <td><span class="badge bg-primary">{{$customer->Offer->where('status', 2)->count()}}/{{$customer->Offer->count()}}</span></td>
-                            <td><span class="badge bg-primary">{{$customer->Project->where('status', 2)->count()}}/{{$customer->Project->count()}}</span></td>
+                            <td><span class="badge text-bg-primary">{{$customer->Offer->where('status', 2)->count()}}/{{$customer->Offer->count()}}</span></td>
+                            <td><span class="badge text-bg-primary">{{$customer->Project->where('status', 2)->count()}}/{{$customer->Project->count()}}</span></td>
                             <td>{{$customer->Payment->sum('amount')}} TL</td>
-                            <td>{!! $customer->status == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-danger">Pasif</span>' !!}<td>
+                            <td>{!! $customer->status == 1 ? '<span class="badge text-bg-success">Aktif</span>' : '<span class="badge text-bg-danger">Pasif</span>' !!}<td>
                         </tr>
                     @endforeach
                   </tbody>

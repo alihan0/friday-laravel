@@ -66,4 +66,5 @@ Route::controller(OfferController::class)->prefix('offer')->middleware('auth')->
     Route::get('/wait', 'wait');
     Route::get('/detail/{id}', 'detail');
     Route::post('/confirm', 'confirm');
+    Route::post('/reject', 'reject');
 });

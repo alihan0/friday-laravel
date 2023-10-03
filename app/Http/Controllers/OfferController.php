@@ -102,4 +102,26 @@ class OfferController extends Controller
         }
         return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
     }
+
+    public function reject(Request $request){
+        $offer = Offer::find($request->id);
+        if($offer){
+            if($offer->status != 2){
+                $offer->status = 2;
+                if($offer->save()){
+                    $this->type = "success";
+                    $this->message = "Teklif reddedildi.";
+                    $this->status = true;
+                }else{
+                    $this->message = "Teklif reddedilirken hata oluştu!";
+                }
+            }else{
+                $this->message = "Teklif zaten reddedilmiş";
+            }
+        }else{
+            $this->message = "Offer bulunamadı";
+            $this->type = "danger";
+        }
+        return response(["type" => $this->type, "message" => $this->message, "status" => $this->status]);
+    }
 }

@@ -354,7 +354,7 @@
   <div class="col text-end">
     <button type="button" class="btn btn-success me-1" onclick="confirmOffer({{$offer->id}})">Teklifi Onayla</button>
     <button type="button" class="btn btn-danger me-1" onclick="rejectOffer({{$offer->id}})">Teklifi Reddet</button>
-    <button type="button" class="btn btn-secondary me-1" id="rejectOffer">İptal Et</button>
+    <button type="button" class="btn btn-secondary me-1" onclick="cancelOffer({{$offer->id}})">İptal Et</button>
     <button type="button" class="btn btn-primary" id="printPDF">
       <i data-feather="printer"></i>
     </button>
@@ -383,6 +383,15 @@ function confirmOffer(id){
 
 function rejectOffer(id){
   axios.post('/offer/reject', {id:id}).then((res) => {
+    toastr[res.data.type](res.data.message);
+    if(res.data.status){
+      window.location.reload();
+    }
+  });
+}
+
+function cancelOffer(id){
+  axios.post('/offer/cancel', {id:id}).then((res) => {
     toastr[res.data.type](res.data.message);
     if(res.data.status){
       window.location.reload();

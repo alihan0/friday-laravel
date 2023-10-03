@@ -27,9 +27,11 @@
 
 <div class="row" id="print">
   
-  <div class="col text-center">
+  <div class="col text-center border-bottom pb-3 mb-3">
     <img src="{{$system->logo}}" class="mx-auto" alt="{{$system->company_name}}" width="200px">
-    <h2 class="card-title border-bottom pb-3 mb-3">{{$offer->title}}</h2>
+    <h2 class="card-title  pb-3 mb-3">{{$offer->title}}</h2>
+
+    <div class="float-end" style="font-size:12px;"><span>{{$offer->created_at}} </span> | <span class="badge text-bg-{{ ($offer->status == 1 ? 'warning' : ($offer->status == 2 ? 'danger' : ($offer->status == 3 ? 'success' : 'secondary'))) }}">{{ ($offer->status == 1 ? 'Bekliyor' : ($offer->status == 2 ? 'Reddedildi' : ($offer->status == 3 ? 'Onaylandı' : 'İptal Edildi'))) }}</span></div>
 </div>
 
 

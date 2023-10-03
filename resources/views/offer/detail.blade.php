@@ -352,9 +352,9 @@
 
 <div class="row">
   <div class="col text-end">
-    <button type="button" class="btn btn-success me-1" onclick="confirmOffer({{$offer->id}})">Teklifi Onayla</button>
-    <button type="button" class="btn btn-danger me-1" onclick="rejectOffer({{$offer->id}})">Teklifi Reddet</button>
-    <button type="button" class="btn btn-secondary me-1" onclick="cancelOffer({{$offer->id}})">İptal Et</button>
+    <button type="button" class="btn btn-success me-1 {{$offer->status == 3 ? "d-none" : ""}}" onclick="confirmOffer({{$offer->id}})">Teklifi Onayla</button>
+    <button type="button" class="btn btn-danger me-1 {{$offer->status == 2 ? "d-none" : ""}}" onclick="rejectOffer({{$offer->id}})">Teklifi Reddet</button>
+    <button type="button" class="btn btn-secondary me-1 {{$offer->status == 0 ? "d-none" : ""}}" onclick="cancelOffer({{$offer->id}})">İptal Et</button>
     <button type="button" class="btn btn-primary" id="printPDF">
       <i data-feather="printer"></i>
     </button>

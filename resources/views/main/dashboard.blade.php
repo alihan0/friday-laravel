@@ -31,8 +31,8 @@
                     <div class="row">
                       <div class="col-12">
                         <h6 class="mb-0">
-                          <span class="border-end pe-2">Bekleyen: <b>12</b></span>
-                          <span class="ps-2">Toplam: <b>2</b></span>
+                          <span class="border-end pe-2">Bekleyen: <b>{{$offers->where('status',1)->count()}}</b></span>
+                          <span class="ps-2">Toplam: <b>{{$offers->count()}}</b></span>
                         </h6>
                       </div>
                     </div>
